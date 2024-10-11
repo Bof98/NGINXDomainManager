@@ -1,31 +1,30 @@
 [build-system]
-requires = ["setuptools>=61.0"]
+requires = ["setuptools>=61.0", "wheel", "setuptools_scm"]
 build-backend = "setuptools.build_meta"
 
 [project]
+dynamic = ["version"]
 name = "NGINXDomainManager"
-version = "1.6.0"
 description = "A tool to manage NGINX domains"
+readme = "README.md"
+requires-python = ">=3.7"
+license = { text = "MIT License" }
+authors = [
+    { name = "Your Name", email = "your.email@example.com" },
+]
 dependencies = [
-    "altgraph==0.17.4",
-    "certifi==2024.8.30",
-    "charset-normalizer==3.4.0",
-    "colorama==0.4.6",
-    "idna==3.10",
-    "packaging==24.1",
-    "pefile==2024.8.26",
-    "pyinstaller==6.10.0",
-    "pyinstaller-hooks-contrib==2024.8",
-    "pywin32-ctypes==0.2.3",
-    "PyYAML==6.0.2",
-    "requests==2.32.3",
-    "setuptools==75.1.0",
-    "urllib3==2.2.3"
+    "PyYAML>=6.0.2",
+    "colorama>=0.4.6",
+    "requests>=2.31.0",
+    "packaging>=24.1",
 ]
 
 [project.urls]
 Homepage = "https://github.com/Bof98/NGINXDomainManager"
 Issues = "https://github.com/Bof98/NGINXDomainManager/issues"
+
+[project.scripts]
+NGINXDomainManager = "domain_manager.main:main"
 
 [tool.setuptools]
 package-dir = { "" = "src" }
@@ -33,3 +32,5 @@ package-dir = { "" = "src" }
 [tool.setuptools.packages.find]
 where = ["src"]
 
+[tool.setuptools.package-data]
+"domain_manager" = ["templates/*"]

@@ -5,7 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="26fd8c86-c00a-4d7a-a326-e97524ca75de" name="Changes" comment="Updated pyproject.toml">
+      <change beforePath="$PROJECT_DIR$/.github/workflows/python-app.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/python-app.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/python-publish.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/python-publish.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/NGINXDomainManager/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain_manager/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/NGINXDomainManager/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain_manager/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/NGINXDomainManager/config.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain_manager/config.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/NGINXDomainManager/logger.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain_manager/logger.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/NGINXDomainManager/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain_manager/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/NGINXDomainManager/templates/nginx_config_template.conf" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain_manager/templates/nginx_config_template.conf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/NGINXDomainManager/updater.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain_manager/updater.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/NGINXDomainManager/utils/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain_manager/utils/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/NGINXDomainManager/utils/backup.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain_manager/utils/backup.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/NGINXDomainManager/utils/data_files.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain_manager/utils/data_files.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/NGINXDomainManager/utils/display.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain_manager/utils/display.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/NGINXDomainManager/utils/domain.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain_manager/utils/domain.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/NGINXDomainManager/utils/permissions.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain_manager/utils/permissions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/NGINXDomainManager/utils/validation.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain_manager/utils/validation.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -204,7 +222,15 @@
       <option name="project" value="LOCAL" />
       <updated>1728678916724</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Updated pyproject.toml">
+      <option name="closed" value="true" />
+      <created>1728679194663</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1728679194663</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -243,7 +269,7 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/src/NGINXDomainManager/updater.py</url>
+          <url>file://$PROJECT_DIR$/src/domain_manager/updater.py</url>
           <line>22</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>

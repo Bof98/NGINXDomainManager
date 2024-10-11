@@ -105,7 +105,7 @@ def update_application(latest_version, download_url):
 
 def check_for_updates(version):
     repo_owner = "Bof98"  # Replace with your GitHub username
-    repo_name = "NGINXDomainManager"  # Replace with your repository name
+    repo_name = "domain_manager"  # Replace with your repository name
     latest_version, download_url = get_latest_release(repo_owner, repo_name)
     if latest_version and download_url:
         if is_newer_version(version, latest_version):
