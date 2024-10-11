@@ -16,7 +16,7 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'src'))
 
 from domain_manager.config import load_config
 from domain_manager.logger import setup_logging
-from domain_manager.updater import check_for_updates, apply_update
+from src.domain_manager.updater import check_for_updates
 from domain_manager.utils.display import display_startup, main_menu
 from domain_manager.utils.permissions import check_permissions
 from domain_manager._version import __version__
@@ -24,11 +24,11 @@ from domain_manager._version import __version__
 # Initialize colorama
 init(autoreset=True)
 
+# Example usage
+package_name = "NGINXDomainManager"
+
 
 def main():
-    # Apply any pending updates
-    apply_update()
-
     # Ensure the script is run as root/admin
     check_permissions()
 
@@ -42,7 +42,7 @@ def main():
     display_startup(__version__)
 
     # Check for updates
-    check_for_updates(__version__)
+    check_for_updates(__version__, package_name)
 
     # Proceed with the main menu
     main_menu(config)
