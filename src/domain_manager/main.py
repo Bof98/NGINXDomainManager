@@ -19,6 +19,7 @@ from domain_manager.logger import setup_logging
 from domain_manager.updater import check_for_updates, apply_update
 from domain_manager.utils.display import display_startup, main_menu
 from domain_manager.utils.permissions import check_permissions
+from domain_manager._version import __version__
 
 # Initialize colorama
 init(autoreset=True)
