@@ -13,4 +13,4 @@ NGINXDomainManager is a Python-based tool to manage NGINX configurations and SSL
 ## Installation
 
 ```bash
-pip install NGINXDomainManager
+pip install NGINXDomainManager 
