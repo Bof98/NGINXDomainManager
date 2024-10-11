@@ -7,7 +7,11 @@ import subprocess
 import sys
 
 import requests
+from colorama import Fore, init
 from packaging import version
+
+# Initialize colorama
+init()
 
 # Setup logging
 logging.basicConfig(

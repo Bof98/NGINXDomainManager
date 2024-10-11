@@ -1,4 +1,6 @@
 # Validate Subdomain
+import logging
+
 from colorama import Fore
 
 
