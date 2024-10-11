@@ -15,7 +15,7 @@ from utils.display import display_startup, main_menu
 from utils.permissions import check_permissions
 
 # Version Variable
-__version__ = "1.5.0"
+__version__ = "1.6.0"
 
 # Initialize colorama
 init(autoreset=True)
