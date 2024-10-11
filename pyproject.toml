@@ -36,4 +36,7 @@ where = ["src"]
 "domain_manager" = ["templates/*"]
 
 [tool.setuptools_scm]
+version_scheme = "no-guess-dev"
+local_scheme = "no-local-version"
 write_to = "src/domain_manager/_version.py"
+

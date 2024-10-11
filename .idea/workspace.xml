@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26fd8c86-c00a-4d7a-a326-e97524ca75de" name="Changes" comment="Add dynamic version control">
+    <list default="true" id="26fd8c86-c00a-4d7a-a326-e97524ca75de" name="Changes" comment="Fixed logger import">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/domain_manager/_version.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain_manager/_version.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/domain_manager/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain_manager/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -268,7 +269,31 @@
       <option name="project" value="LOCAL" />
       <updated>1728682097911</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Fixed version import">
+      <option name="closed" value="true" />
+      <created>1728682411756</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1728682411756</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Fixed">
+      <option name="closed" value="true" />
+      <created>1728682873934</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1728682873934</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Fixed logger import">
+      <option name="closed" value="true" />
+      <created>1728683154507</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1728683154507</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -300,7 +325,10 @@
     <MESSAGE value="Updated pyproject.toml" />
     <MESSAGE value="Building Package" />
     <MESSAGE value="Add dynamic version control" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add dynamic version control" />
+    <MESSAGE value="Fixed version import" />
+    <MESSAGE value="Fixed" />
+    <MESSAGE value="Fixed logger import" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed logger import" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />

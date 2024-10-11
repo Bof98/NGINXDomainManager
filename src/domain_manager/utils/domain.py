@@ -4,8 +4,7 @@ import subprocess
 import sys
 
 from colorama import Fore
-
-from src.domain_manager.utils.backup import backup_config
+from domain_manager.utils.backup import backup_config
 
 
 # Obtain SSL Certificate

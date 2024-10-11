@@ -3,12 +3,11 @@ import logging
 import sys
 
 from colorama import Fore
-
-from src.domain_manager.config import configure_settings, create_nginx_config
-from src.domain_manager.logger import show_logs, show_changelog
-from src.domain_manager.utils.domain import list_subdomains, get_subdomain_details, delete_subdomain, \
+from domain_manager.config import configure_settings, create_nginx_config
+from domain_manager.logger import show_logs, show_changelog
+from domain_manager.utils.domain import list_subdomains, get_subdomain_details, delete_subdomain, \
     obtain_certificate, reload_nginx
-from src.domain_manager.utils.validation import validate_subdomain, validate_ip, validate_port
+from domain_manager.utils.validation import validate_subdomain, validate_ip, validate_port
 
 
 def display_startup(version):
