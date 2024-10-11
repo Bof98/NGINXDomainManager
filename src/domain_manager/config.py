@@ -6,8 +6,7 @@ import sys
 import domain_manager.logger
 import yaml
 from colorama import Fore
-
-from utils.backup import backup_config
+from domain_manager.utils.backup import backup_config
 
 # Constants
 CONFIG_FILE = "config.yaml"
