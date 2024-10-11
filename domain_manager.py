@@ -4,6 +4,8 @@ DomainManager.py - A Python-based script to manage Nginx subdomains with SSL cer
 Version: 1.0.3
 
 Changelog:
+- 1.0.5: Clear terminal on startup
+- 1.0.4: New ASCII startup graphic
 - 1.0.3: Added configuration menu and ability to view logs
 - 1.0.2: Enhanced startup graphic and renamed script to "NGINX Domain Manager"
 - 1.0.1: Embedded Nginx configuration template within the script
@@ -18,6 +20,9 @@ import yaml
 import logging
 from datetime import datetime
 from colorama import init, Fore, Style
+
+# Version Variable
+__version__ = "1.0.5"
 
 # Initialize colorama
 init(autoreset=True)
@@ -76,7 +81,7 @@ def display_startup(version):
 ######################################################################################
     """
     print(Fore.CYAN + startup_graphic)
-    print(f"Version: {version}\n")
+    print(f"Version: {__version__}\n")
 
 
 # Validate Subdomain
