@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26fd8c86-c00a-4d7a-a326-e97524ca75de" name="Changes" comment="Fixed logger import">
+    <list default="true" id="26fd8c86-c00a-4d7a-a326-e97524ca75de" name="Changes" comment="Updated package-data">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/domain_manager/_version.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain_manager/_version.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/domain_manager/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain_manager/config.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,6 +58,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Python.config.executor": "Run",
     "Python.main (1).executor": "Run",
     "Python.main.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -79,7 +80,29 @@
       <recent name="C:\Users\harri\PycharmProjects\NGINXDomainManager" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.main (1)">
+  <component name="RunManager" selected="Python.config">
+    <configuration name="config" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="NGINXDomainManager" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/dist/nginxdomainmanager-2.0.14.post1.dev1/src/domain_manager" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/dist/nginxdomainmanager-2.0.14.post1.dev1/src/domain_manager/config.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="main (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="NGINXDomainManager" />
       <option name="ENV_FILES" value="" />
@@ -126,6 +149,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.config" />
         <item itemvalue="Python.main (1)" />
       </list>
     </recent_temporary>
@@ -301,7 +325,15 @@
       <option name="project" value="LOCAL" />
       <updated>1728683634235</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Updated package-data">
+      <option name="closed" value="true" />
+      <created>1728685334738</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1728685334738</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -336,7 +368,8 @@
     <MESSAGE value="Fixed version import" />
     <MESSAGE value="Fixed" />
     <MESSAGE value="Fixed logger import" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed logger import" />
+    <MESSAGE value="Updated package-data" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated package-data" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />

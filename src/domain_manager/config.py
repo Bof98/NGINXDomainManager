@@ -9,7 +9,8 @@ from colorama import Fore
 from domain_manager.utils.backup import backup_config
 
 # Constants
-CONFIG_FILE = "config.yaml"
+SCRIPTDIR = os.path.dirname(__file__)
+CONFIG_FILE = os.path.join(SCRIPTDIR, 'config.yaml')
 
 
 # Load Configuration
