@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools", "wheel"]
+requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -23,10 +23,13 @@ dependencies = [
     "urllib3==2.2.3"
 ]
 
+[project.urls]
+Homepage = "https://github.com/Bof98/NGINXDomainManager"
+Issues = "https://github.com/Bof98/NGINXDomainManager/issues"
+
 [tool.setuptools]
 package-dir = { "" = "src" }
-long_description = "file: README.md"
-long_description_content_type = "text/markdown"
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
