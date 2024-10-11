@@ -5,7 +5,7 @@ import sys
 
 from colorama import Fore
 
-from utils.backup import backup_config
+from src.NGINXDomainManager.utils.backup import backup_config
 
 
 # Obtain SSL Certificate
