@@ -25,7 +25,20 @@ def show_logs(config):
     log_file = config['log_file']
     if os.path.exists(log_file):
         try:
-            subprocess.run(['less', log_file])
+            if os.name == 'nt':  # For Windows
+                subprocess.run(['more', log_file])
+            else:  # For Unix-like systems
+                subprocess.run(['less', log_file])
+        except FileNotFoundError:
+            print(Fore.RED + "The 'less' or 'more' command is not available.")
+            logging.error("The 'less' or 'more' command is not available.")
+            # Fallback to reading and printing the log file
+            try:
+                with open(log_file, 'r') as f:
+                    print(f.read())
+            except Exception as e:
+                print(Fore.RED + f"Failed to read log file: {e}")
+                logging.error(f"Failed to read log file {log_file}: {e}")
         except Exception as e:
             print(Fore.RED + f"Failed to open log file: {e}")
             logging.error(f"Failed to open log file {log_file}: {e}")

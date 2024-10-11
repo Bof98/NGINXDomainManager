@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26fd8c86-c00a-4d7a-a326-e97524ca75de" name="Changes" comment="Updated package-data">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="26fd8c86-c00a-4d7a-a326-e97524ca75de" name="Changes" comment="Fixed config.yaml import">
       <change beforePath="$PROJECT_DIR$/src/domain_manager/_version.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain_manager/_version.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/domain_manager/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain_manager/config.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -333,7 +331,15 @@
       <option name="project" value="LOCAL" />
       <updated>1728685334738</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Fixed config.yaml import">
+      <option name="closed" value="true" />
+      <created>1728688871397</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1728688871397</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -369,7 +375,8 @@
     <MESSAGE value="Fixed" />
     <MESSAGE value="Fixed logger import" />
     <MESSAGE value="Updated package-data" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated package-data" />
+    <MESSAGE value="Fixed config.yaml import" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed config.yaml import" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
