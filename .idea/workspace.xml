@@ -4,20 +4,53 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26fd8c86-c00a-4d7a-a326-e97524ca75de" name="Changes" comment="NGINX Domain Manager Initial Commit">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="26fd8c86-c00a-4d7a-a326-e97524ca75de" name="Changes" comment="Add .gitignore file to exclude unnecessary files&#10;&#10;- Exclude byte-compiled, optimized, and DLL files&#10;- Exclude virtual environment directories&#10;- Exclude distribution and packaging directories">
+      <change afterPath="$PROJECT_DIR$/.github/workflows/build.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/logger.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/nginx_config_template.conf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/updater.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/backup.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/data_files.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/display.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/domain.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/permissions.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/validation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/NGINXDomainManager.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/NGINXDomainManager.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/domain_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/domain_manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domain_manager.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "Bof98"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/Bof98/NGINXDomainManager.git",
+    "accountId": "f71a557e-6673-4415-b871-69496f28cfbb"
+  }
+}]]></component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -34,6 +67,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Python.main.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
     "settings.editor.selected.configurable": "vcs.Git"
@@ -100,7 +134,15 @@
       <option name="project" value="LOCAL" />
       <updated>1728665566279</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Add .gitignore file to exclude unnecessary files&#10;&#10;- Exclude byte-compiled, optimized, and DLL files&#10;- Exclude virtual environment directories&#10;- Exclude distribution and packaging directories">
+      <option name="closed" value="true" />
+      <created>1728666833099</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1728666833099</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -123,6 +165,21 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Deleted main.py" />
     <MESSAGE value="NGINX Domain Manager Initial Commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="NGINX Domain Manager Initial Commit" />
+    <MESSAGE value="Add .gitignore file to exclude unnecessary files&#10;&#10;- Exclude byte-compiled, optimized, and DLL files&#10;- Exclude virtual environment directories&#10;- Exclude distribution and packaging directories" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add .gitignore file to exclude unnecessary files&#10;&#10;- Exclude byte-compiled, optimized, and DLL files&#10;- Exclude virtual environment directories&#10;- Exclude distribution and packaging directories" />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/updater.py</url>
+          <line>22</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

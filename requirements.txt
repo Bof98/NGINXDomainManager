@@ -1,2 +1,5 @@
-PyYAML
-colorama
+PyYAML~=6.0.2
+colorama~=0.4.6
+
+requests~=2.32.3
+packaging~=24.1
