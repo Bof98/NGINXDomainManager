@@ -6,9 +6,6 @@ build-backend = "setuptools.build_meta"
 name = "NGINXDomainManager"
 version = "1.6.0"
 description = "A tool to manage NGINX domains"
-authors = [
-    { name = "Your Name", email = "your.email@example.com" }
-]
 dependencies = [
     "altgraph==0.17.4",
     "certifi==2024.8.30",
@@ -25,6 +22,8 @@ dependencies = [
     "setuptools==75.1.0",
     "urllib3==2.2.3"
 ]
+long_description = "file: README.md"
+long_description_content_type = "text/markdown"
 
 [tool.setuptools]
 package-dir = { "" = "src" }

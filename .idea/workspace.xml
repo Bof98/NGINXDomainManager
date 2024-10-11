@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26fd8c86-c00a-4d7a-a326-e97524ca75de" name="Changes" comment="Updated imports in: utils/validation.py and updater.py" />
+    <list default="true" id="26fd8c86-c00a-4d7a-a326-e97524ca75de" name="Changes" comment="Moved package files to /src" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -87,7 +87,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\harri\PycharmProjects\NGINXDomainManager\src\NGINXDomainManager\main.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -177,7 +177,15 @@
       <option name="project" value="LOCAL" />
       <updated>1728677069387</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Moved package files to /src">
+      <option name="closed" value="true" />
+      <created>1728678186995</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1728678186995</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -205,7 +213,8 @@
     <MESSAGE value="Testing the Update Mechanism" />
     <MESSAGE value="Added pyproject.toml" />
     <MESSAGE value="Updated imports in: utils/validation.py and updater.py" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated imports in: utils/validation.py and updater.py" />
+    <MESSAGE value="Moved package files to /src" />
+    <option name="LAST_COMMIT_MESSAGE" value="Moved package files to /src" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -214,7 +223,7 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/updater.py</url>
+          <url>file://$PROJECT_DIR$/src/NGINXDomainManager/updater.py</url>
           <line>22</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
