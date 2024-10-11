@@ -16,7 +16,7 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'src'))
 
 from domain_manager.config import load_config
 from domain_manager.logger import setup_logging
-from src.domain_manager.updater import check_for_updates
+from domain_manager.updater import check_for_updates
 from domain_manager.utils.display import display_startup, main_menu
 from domain_manager.utils.permissions import check_permissions
 from domain_manager._version import __version__

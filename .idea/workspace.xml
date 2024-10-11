@@ -4,8 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26fd8c86-c00a-4d7a-a326-e97524ca75de" name="Changes" comment="Fixed config.yaml import">
+    <list default="true" id="26fd8c86-c00a-4d7a-a326-e97524ca75de" name="Changes" comment="Added self-update functionality using pip&#10;&#10;- Implement `update_package` function to update the package using pip&#10;- Implement `check_for_updates` function to check for updates on PyPI&#10;- Add logging and user prompts for update process&#10;- Ensure application restarts after successful update">
+      <change afterPath="$PROJECT_DIR$/upload_to_pypi.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/domain_manager/_version.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain_manager/_version.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/domain_manager/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain_manager/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,6 +62,7 @@
     "Python.config.executor": "Run",
     "Python.main (1).executor": "Run",
     "Python.main.executor": "Run",
+    "Python.upload_to_pypi.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
     "settings.editor.selected.configurable": "vcs.Git"
@@ -78,7 +82,7 @@
       <recent name="C:\Users\harri\PycharmProjects\NGINXDomainManager" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.config">
+  <component name="RunManager" selected="Python.upload_to_pypi">
     <configuration name="config" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="NGINXDomainManager" />
       <option name="ENV_FILES" value="" />
@@ -145,10 +149,33 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="upload_to_pypi" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="NGINXDomainManager" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/upload_to_pypi.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.config" />
+        <item itemvalue="Python.upload_to_pypi" />
         <item itemvalue="Python.main (1)" />
+        <item itemvalue="Python.config" />
       </list>
     </recent_temporary>
   </component>
@@ -339,7 +366,23 @@
       <option name="project" value="LOCAL" />
       <updated>1728688871397</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Fix logging setup and improve log display handling&#10;&#10;- Ensure log file directory exists before setting up logging&#10;- Handle potential exceptions during logging setup&#10;- Improve `show_logs` function to handle different platforms (Windows and Unix-like systems)&#10;- Add fallback mechanism to read and print log file if `less` or `more` command is not available&#10;- Removed log files from package">
+      <option name="closed" value="true" />
+      <created>1728689239377</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1728689239377</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Added self-update functionality using pip&#10;&#10;- Implement `update_package` function to update the package using pip&#10;- Implement `check_for_updates` function to check for updates on PyPI&#10;- Add logging and user prompts for update process&#10;- Ensure application restarts after successful update">
+      <option name="closed" value="true" />
+      <created>1728689788991</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1728689788991</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -376,20 +419,11 @@
     <MESSAGE value="Fixed logger import" />
     <MESSAGE value="Updated package-data" />
     <MESSAGE value="Fixed config.yaml import" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed config.yaml import" />
+    <MESSAGE value="Fix logging setup and improve log display handling&#10;&#10;- Ensure log file directory exists before setting up logging&#10;- Handle potential exceptions during logging setup&#10;- Improve `show_logs` function to handle different platforms (Windows and Unix-like systems)&#10;- Add fallback mechanism to read and print log file if `less` or `more` command is not available&#10;- Removed log files from package" />
+    <MESSAGE value="Added self-update functionality using pip&#10;&#10;- Implement `update_package` function to update the package using pip&#10;- Implement `check_for_updates` function to check for updates on PyPI&#10;- Add logging and user prompts for update process&#10;- Ensure application restarts after successful update" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added self-update functionality using pip&#10;&#10;- Implement `update_package` function to update the package using pip&#10;- Implement `check_for_updates` function to check for updates on PyPI&#10;- Add logging and user prompts for update process&#10;- Ensure application restarts after successful update" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/src/domain_manager/updater.py</url>
-          <line>22</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
