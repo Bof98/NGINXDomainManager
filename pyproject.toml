@@ -33,7 +33,7 @@ package-dir = { "" = "src" }
 where = ["src"]
 
 [tool.setuptools.package-data]
-"domain_manager" = ["templates/*"]
+"domain_manager" = ["templates/*", "config.yaml", "README.md", "requirements.txt"]
 
 [tool.setuptools_scm]
 version_scheme = "no-guess-dev"
