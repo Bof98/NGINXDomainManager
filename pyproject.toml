@@ -22,11 +22,11 @@ dependencies = [
     "setuptools==75.1.0",
     "urllib3==2.2.3"
 ]
-long_description = "file: README.md"
-long_description_content_type = "text/markdown"
 
 [tool.setuptools]
 package-dir = { "" = "src" }
+long_description = "file: README.md"
+long_description_content_type = "text/markdown"
 
 [tool.setuptools.packages.find]
 where = ["src"]

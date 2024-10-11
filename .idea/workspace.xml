@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26fd8c86-c00a-4d7a-a326-e97524ca75de" name="Changes" comment="Moved package files to /src" />
+    <list default="true" id="26fd8c86-c00a-4d7a-a326-e97524ca75de" name="Changes" comment="Updated pyproject.toml" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -70,6 +70,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\harri\PycharmProjects\NGINXDomainManager\src\NGINXDomainManager" />
       <recent name="C:\Users\harri\PycharmProjects\NGINXDomainManager" />
     </key>
   </component>
@@ -185,7 +186,15 @@
       <option name="project" value="LOCAL" />
       <updated>1728678186995</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Updated pyproject.toml">
+      <option name="closed" value="true" />
+      <created>1728678626184</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1728678626184</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -214,7 +223,8 @@
     <MESSAGE value="Added pyproject.toml" />
     <MESSAGE value="Updated imports in: utils/validation.py and updater.py" />
     <MESSAGE value="Moved package files to /src" />
-    <option name="LAST_COMMIT_MESSAGE" value="Moved package files to /src" />
+    <MESSAGE value="Updated pyproject.toml" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated pyproject.toml" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
