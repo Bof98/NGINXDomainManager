@@ -3,10 +3,10 @@ import os
 import subprocess
 import sys
 
+import domain_manager.logger
 import yaml
 from colorama import Fore
 
-from logger import setup_logging
 from utils.backup import backup_config
 
 # Constants
@@ -111,7 +111,7 @@ def configure_settings(config):
             new_value = input(f"Enter new Log File Location [{config['log_file']}]: ").strip()
             if new_value:
                 config['log_file'] = new_value
-                setup_logging(new_value)  # Reconfigure logging
+                domain_manager.logger.setup_logging(new_value)  # Reconfigure logging
                 print(Fore.GREEN + f"Log File set to {new_value}")
                 logging.info(f"Log File updated to {new_value}")
         elif choice == '6':
