@@ -6,16 +6,19 @@ Requires: Python 3.6+, PyYAML, colorama
 """
 
 # Main Function
+import os
+import sys
+
 from colorama import init
 
-from config import load_config
-from logger import setup_logging
-from updater import check_for_updates, apply_update
-from utils.display import display_startup, main_menu
-from utils.permissions import check_permissions
+# Add the src directory to the Python path
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'src'))
 
-# Version Variable
-__version__ = "1.6.0"
+from domain_manager.config import load_config
+from domain_manager.logger import setup_logging
+from domain_manager.updater import check_for_updates, apply_update
+from domain_manager.utils.display import display_startup, main_menu
+from domain_manager.utils.permissions import check_permissions
 
 # Initialize colorama
 init(autoreset=True)
