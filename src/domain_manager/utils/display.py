@@ -178,6 +178,7 @@ def main_menu(config):
                 elif sub_choice == '4':
                     # Check for updates
                     check_for_updates(__version__, package_name)
+                    break
 
                 elif sub_choice == '5':
                     # Go back to the main menu
