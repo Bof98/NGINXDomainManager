@@ -24,7 +24,6 @@ from domain_manager._version import __version__
 # Initialize colorama
 init(autoreset=True)
 
-# Example usage
 package_name = "NGINXDomainManager"
 
 

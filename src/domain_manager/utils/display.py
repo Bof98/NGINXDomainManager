@@ -3,11 +3,15 @@ import logging
 import os
 
 from colorama import Fore
+from domain_manager._version import __version__
 from domain_manager.config import configure_settings, create_nginx_config
 from domain_manager.logger import show_logs, show_changelog
+from domain_manager.updater import check_for_updates
 from domain_manager.utils.domain import list_subdomains, get_subdomain_details, delete_subdomain, \
     obtain_certificate, reload_nginx
 from domain_manager.utils.validation import validate_subdomain, validate_ip, validate_port
+
+package_name = "NGINXDomainManager"
 
 
 def display_startup(version):
@@ -153,7 +157,8 @@ def main_menu(config):
                 print("1) View logs")
                 print("2) View Changelog")
                 print("3) Configure settings")
-                print("4) Go back to the main menu")
+                print("4) Check for updates")
+                print("5) Go back to the main menu")
 
                 choice = input("Enter your choice (1-4): ").strip()
 
@@ -170,6 +175,10 @@ def main_menu(config):
                     configure_settings(config)
 
                 elif choice == '4':
+                    # Check for updates
+                    check_for_updates(__version__, package_name)
+
+                elif choice == '5':
                     # Go back to the main menu
                     break
 
