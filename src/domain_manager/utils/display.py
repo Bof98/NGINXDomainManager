@@ -5,7 +5,7 @@ import os
 from colorama import Fore
 from domain_manager._version import __version__
 from domain_manager.config import configure_settings, create_nginx_config
-from domain_manager.logger import show_logs, show_changelog
+from domain_manager.logger import show_logs, show_changelog, setup_logging
 from domain_manager.updater import check_for_updates
 from domain_manager.utils.domain import list_subdomains, get_subdomain_details, delete_subdomain, \
     obtain_certificate, reload_nginx
@@ -62,6 +62,7 @@ def clear_terminal():
 
 # Main Menu
 def main_menu(config):
+    logger = setup_logging(config['log_file'])
     while True:
         print("\nWhat would you like to do?")
         print("1) Create a new subdomain")
@@ -160,25 +161,25 @@ def main_menu(config):
                 print("4) Check for updates")
                 print("5) Go back to the main menu")
 
-                choice = input("Enter your choice (1-4): ").strip()
+                sub_choice = input("Enter your choice (1-5): ").strip()
 
-                if choice == '1':
+                if sub_choice == '1':
                     # View logs
-                    show_logs(config)
+                    show_logs(config, logger)  # Pass the logger
 
-                elif choice == '2':
+                elif sub_choice == '2':
                     # View changelog
-                    show_changelog()
+                    show_changelog(logger)  # Pass the logger
 
-                elif choice == '3':
+                elif sub_choice == '3':
                     # Configure settings
                     configure_settings(config)
 
-                elif choice == '4':
+                elif sub_choice == '4':
                     # Check for updates
                     check_for_updates(__version__, package_name)
 
-                elif choice == '5':
+                elif sub_choice == '5':
                     # Go back to the main menu
                     break
 

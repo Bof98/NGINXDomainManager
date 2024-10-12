@@ -1,3 +1,5 @@
+# logger.py
+
 import logging
 import os
 import subprocess
@@ -51,11 +53,6 @@ def setup_logging(log_file):
 
     return logger
 
-
-# Initialize logger
-logger = setup_logging('nginx_domain_manager.log')
-
-
 def show_logs(config, logger):
     log_file = config.get('log_file', 'nginx_domain_manager.log')
     if os.path.exists(log_file):
@@ -86,7 +83,6 @@ def show_logs(config, logger):
         error_message = f"Log file not found at {log_file}"
         print(Fore.RED + error_message)
         logger.error(error_message)
-
 
 def show_changelog(logger):
     script_path = os.path.realpath(__file__)

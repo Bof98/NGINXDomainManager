@@ -6,7 +6,7 @@ nginx_conf_dir: "/etc/nginx"
 sites_available: "/etc/nginx/sites-available"
 sites_enabled: "/etc/nginx/sites-enabled"
 backup_dir: "/etc/nginx/backups"
-log_file: "/var/log/DomainManager.log"
+log_file: "/var/log/nginx_domain_manager.log"
 
 nginx_template: |
   server {
