@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26fd8c86-c00a-4d7a-a326-e97524ca75de" name="Changes" comment="Fixed main menu 'exit' choice">
+    <list default="true" id="26fd8c86-c00a-4d7a-a326-e97524ca75de" name="Changes" comment="Enhance logging setup for improved maintainability and readability&#10;&#10;- Introduce dedicated logger for NGINXDomainManager to avoid conflicts and improve control&#10;- Add log rotation using RotatingFileHandler to manage log file size and backups&#10;- Implement color-coded console output using colorama for better visibility of log levels&#10;- Refactor logging setup to allow configurable log levels and consistent use across functions&#10;- Improve error handling in log viewing and changelog display functions with contextual logging&#10;- Use custom ColorFormatter for dynamic log level color mapping in console output">
       <change afterPath="$PROJECT_DIR$/upload_to_pypi.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/domain_manager/_version.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain_manager/_version.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/domain_manager/logger.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain_manager/logger.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/domain_manager/updater.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain_manager/updater.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,6 +63,7 @@
     "Python.logger.executor": "Run",
     "Python.main (1).executor": "Run",
     "Python.main.executor": "Run",
+    "Python.updater.executor": "Run",
     "Python.upload_to_pypi.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
@@ -83,7 +84,7 @@
       <recent name="C:\Users\harri\PycharmProjects\NGINXDomainManager" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.logger">
+  <component name="RunManager" selected="Python.updater">
     <configuration name="config" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="NGINXDomainManager" />
       <option name="ENV_FILES" value="" />
@@ -172,6 +173,28 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="updater" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="NGINXDomainManager" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/domain_manager" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/domain_manager/updater.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="upload_to_pypi" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="NGINXDomainManager" />
       <option name="ENV_FILES" value="" />
@@ -196,6 +219,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.updater" />
         <item itemvalue="Python.logger" />
         <item itemvalue="Python.upload_to_pypi" />
         <item itemvalue="Python.main (1)" />
@@ -446,7 +470,15 @@
       <option name="project" value="LOCAL" />
       <updated>1728692506582</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="Enhance logging setup for improved maintainability and readability&#10;&#10;- Introduce dedicated logger for NGINXDomainManager to avoid conflicts and improve control&#10;- Add log rotation using RotatingFileHandler to manage log file size and backups&#10;- Implement color-coded console output using colorama for better visibility of log levels&#10;- Refactor logging setup to allow configurable log levels and consistent use across functions&#10;- Improve error handling in log viewing and changelog display functions with contextual logging&#10;- Use custom ColorFormatter for dynamic log level color mapping in console output">
+      <option name="closed" value="true" />
+      <created>1728692995474</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1728692995474</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -490,7 +522,8 @@
     <MESSAGE value="Updated Menu Opions&#10;&#10;- Moved 'View Logs', 'View changelog' and 'Configure settings' to 'Settings'" />
     <MESSAGE value="Updated updater.py&#10;&#10;- Replaced pip search with pip list --outdated" />
     <MESSAGE value="Fixed main menu 'exit' choice" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed main menu 'exit' choice" />
+    <MESSAGE value="Enhance logging setup for improved maintainability and readability&#10;&#10;- Introduce dedicated logger for NGINXDomainManager to avoid conflicts and improve control&#10;- Add log rotation using RotatingFileHandler to manage log file size and backups&#10;- Implement color-coded console output using colorama for better visibility of log levels&#10;- Refactor logging setup to allow configurable log levels and consistent use across functions&#10;- Improve error handling in log viewing and changelog display functions with contextual logging&#10;- Use custom ColorFormatter for dynamic log level color mapping in console output" />
+    <option name="LAST_COMMIT_MESSAGE" value="Enhance logging setup for improved maintainability and readability&#10;&#10;- Introduce dedicated logger for NGINXDomainManager to avoid conflicts and improve control&#10;- Add log rotation using RotatingFileHandler to manage log file size and backups&#10;- Implement color-coded console output using colorama for better visibility of log levels&#10;- Refactor logging setup to allow configurable log levels and consistent use across functions&#10;- Improve error handling in log viewing and changelog display functions with contextual logging&#10;- Use custom ColorFormatter for dynamic log level color mapping in console output" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
