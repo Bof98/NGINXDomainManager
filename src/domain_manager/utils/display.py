@@ -1,5 +1,6 @@
 # Display Startup Graphic
 import logging
+import os
 import sys
 
 from colorama import Fore
@@ -46,6 +47,14 @@ Options:
     8) Exit
     """
     print(help_text)
+
+
+def clear_terminal():
+    """Clear the terminal screen."""
+    if os.name == 'nt':  # For Windows
+        os.system('cls')
+    else:  # For macOS and Linux
+        os.system('clear')
 
 
 # Main Menu
@@ -158,3 +167,4 @@ def main_menu(config):
 
         # Wait for user to press Enter before returning to the menu
         input("Press Enter to return to the main menu...")
+        clear_terminal()
