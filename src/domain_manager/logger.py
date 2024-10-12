@@ -2,7 +2,6 @@
 
 import logging
 import os
-import subprocess
 from logging.handlers import RotatingFileHandler
 
 from colorama import Fore, Style
@@ -53,31 +52,17 @@ def setup_logging(log_file):
 
     return logger
 
+
 def show_logs(config, logger):
     log_file = config.get('log_file', 'nginx_domain_manager.log')
     if os.path.exists(log_file):
         try:
-            if os.name == 'nt':  # For Windows
-                subprocess.run(['more', log_file], check=True)
-            else:  # For Unix-like systems
-                subprocess.run(['less', log_file], check=True)
+            with open(log_file, 'r') as f:
+                print(f.read())
             logger.info(f"Displayed logs from {log_file}")
-        except subprocess.CalledProcessError as e:
-            error_message = f"Failed to display logs using system pager: {e}"
-            print(Fore.RED + "Failed to display logs using system pager.")
-            logger.error(error_message)
-            # Fallback to reading and printing the log file
-            try:
-                with open(log_file, 'r') as f:
-                    print(f.read())
-                logger.info("Displayed logs by printing the log file directly.")
-            except Exception as e:
-                error_message = f"Failed to read log file {log_file}: {e}"
-                print(Fore.RED + f"Failed to read log file: {e}")
-                logger.error(error_message)
-        except FileNotFoundError:
-            error_message = "The 'less' or 'more' command is not available."
-            print(Fore.RED + error_message)
+        except Exception as e:
+            error_message = f"Failed to read log file {log_file}: {e}"
+            print(Fore.RED + f"Failed to read log file: {e}")
             logger.error(error_message)
     else:
         error_message = f"Log file not found at {log_file}"

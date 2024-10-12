@@ -4,13 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26fd8c86-c00a-4d7a-a326-e97524ca75de" name="Changes" comment="Add option to check for updates in settings">
+    <list default="true" id="26fd8c86-c00a-4d7a-a326-e97524ca75de" name="Changes" comment="Fix show logs">
       <change afterPath="$PROJECT_DIR$/upload_to_pypi.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/domain_manager/_version.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain_manager/_version.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/domain_manager/config.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain_manager/config.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/domain_manager/logger.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain_manager/logger.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/domain_manager/utils/display.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain_manager/utils/display.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -504,7 +499,15 @@
       <option name="project" value="LOCAL" />
       <updated>1728694819929</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="Fix show logs">
+      <option name="closed" value="true" />
+      <created>1728695993711</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1728695993711</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -525,7 +528,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add .gitignore file to exclude unnecessary files&#10;&#10;- Exclude byte-compiled, optimized, and DLL files&#10;- Exclude virtual environment directories&#10;- Exclude distribution and packaging directories" />
     <MESSAGE value="Added automatic update mechanism to check GitHub for new versions and prompt user for updates" />
     <MESSAGE value="Testing the Update Mechanism" />
     <MESSAGE value="Added pyproject.toml" />
@@ -550,7 +552,8 @@
     <MESSAGE value="enhance updater script to fetch latest version from PyPI API&#10;&#10;- Replaced `pip list --outdated` with direct API call to PyPI for latest version&#10;- Added detailed logging for improved traceability and error handling&#10;- Fixed version comparison to ensure accurate update detection&#10;- Removed dependency on `pkg_resources` to avoid deprecation warnings&#10;- Improved user prompts for update confirmation and error messages&#10;&#10;This update resolves issues with pip not recognizing available updates due to versioning scheme differences." />
     <MESSAGE value="Add option to exit/go back in subdomain edit/deletion process&#10;&#10;- Updated the subdomain edit/deletion process to include an option to exit or go back by entering 'q'.&#10;- Improved user experience by allowing users to cancel the deletion process more easily." />
     <MESSAGE value="Add option to check for updates in settings" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add option to check for updates in settings" />
+    <MESSAGE value="Fix show logs" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix show logs" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
