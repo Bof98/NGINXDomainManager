@@ -33,7 +33,7 @@ def check_for_updates(current_version, package_name):
     print(Fore.YELLOW + "Checking for updates...")
     try:
         # Get the latest version from PyPI
-        result = subprocess.run([sys.executable, '-m', 'pip', 'search', package_name], capture_output=True, text=True)
+        result = subprocess.run([sys.executable, '-m', 'pip', 'list', '--outdated'], capture_output=True, text=True)
         latest_version = None
         for line in result.stdout.splitlines():
             if line.startswith(package_name):
