@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26fd8c86-c00a-4d7a-a326-e97524ca75de" name="Changes" comment="Added terminal clearing function and main menu to display.py&#10;&#10;- Implemented `clear_terminal` function to clear the terminal screen.">
+    <list default="true" id="26fd8c86-c00a-4d7a-a326-e97524ca75de" name="Changes" comment="Updated updater.py&#10;&#10;- Replaced pip search with pip list --outdated">
       <change afterPath="$PROJECT_DIR$/upload_to_pypi.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/domain_manager/_version.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain_manager/_version.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -396,7 +395,23 @@
       <option name="project" value="LOCAL" />
       <updated>1728691241274</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="Updated Menu Opions&#10;&#10;- Moved 'View Logs', 'View changelog' and 'Configure settings' to 'Settings'">
+      <option name="closed" value="true" />
+      <created>1728691756331</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1728691756331</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Updated updater.py&#10;&#10;- Replaced pip search with pip list --outdated">
+      <option name="closed" value="true" />
+      <created>1728692229058</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1728692229058</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -437,7 +452,9 @@
     <MESSAGE value="Added self-update functionality using pip&#10;&#10;- Implement `update_package` function to update the package using pip&#10;- Implement `check_for_updates` function to check for updates on PyPI&#10;- Add logging and user prompts for update process&#10;- Ensure application restarts after successful update" />
     <MESSAGE value="Fixed check_for_updates import" />
     <MESSAGE value="Added terminal clearing function and main menu to display.py&#10;&#10;- Implemented `clear_terminal` function to clear the terminal screen." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added terminal clearing function and main menu to display.py&#10;&#10;- Implemented `clear_terminal` function to clear the terminal screen." />
+    <MESSAGE value="Updated Menu Opions&#10;&#10;- Moved 'View Logs', 'View changelog' and 'Configure settings' to 'Settings'" />
+    <MESSAGE value="Updated updater.py&#10;&#10;- Replaced pip search with pip list --outdated" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated updater.py&#10;&#10;- Replaced pip search with pip list --outdated" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />

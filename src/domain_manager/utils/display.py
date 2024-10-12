@@ -171,6 +171,11 @@ def main_menu(config):
                     print(Fore.RED + "Invalid option. Try again.")
                     continue
 
+        elif choice == '6':
+            # Exit
+            print("Goodbye!")
+            break
+
         else:
             print(Fore.RED + "Invalid option. Try again.")
             continue
