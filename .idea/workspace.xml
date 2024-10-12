@@ -4,8 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26fd8c86-c00a-4d7a-a326-e97524ca75de" name="Changes" comment="Fixed display import">
+    <list default="true" id="26fd8c86-c00a-4d7a-a326-e97524ca75de" name="Changes" comment="Removed display import and added clear_terminal function into updater.py">
       <change afterPath="$PROJECT_DIR$/upload_to_pypi.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/domain_manager/_version.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain_manager/_version.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/domain_manager/updater.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain_manager/updater.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -555,7 +558,15 @@
       <option name="project" value="LOCAL" />
       <updated>1728697529914</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="Removed display import and added clear_terminal function into updater.py">
+      <option name="closed" value="true" />
+      <created>1728697826853</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1728697826853</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -576,7 +587,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Building Package" />
     <MESSAGE value="Add dynamic version control" />
     <MESSAGE value="Fixed version import" />
     <MESSAGE value="Fixed" />
@@ -601,7 +611,8 @@
     <MESSAGE value="Terminal is cleared after successful update" />
     <MESSAGE value="Fixed utils.display import" />
     <MESSAGE value="Fixed display import" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed display import" />
+    <MESSAGE value="Removed display import and added clear_terminal function into updater.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="Removed display import and added clear_terminal function into updater.py" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
