@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26fd8c86-c00a-4d7a-a326-e97524ca75de" name="Changes" comment="Terminal is cleared after successful update">
+    <list default="true" id="26fd8c86-c00a-4d7a-a326-e97524ca75de" name="Changes" comment="Fixed utils.display import">
       <change afterPath="$PROJECT_DIR$/upload_to_pypi.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -539,7 +539,15 @@
       <option name="project" value="LOCAL" />
       <updated>1728696836859</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="Fixed utils.display import">
+      <option name="closed" value="true" />
+      <created>1728697172449</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1728697172449</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -560,7 +568,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Moved package files to /src" />
     <MESSAGE value="Updated pyproject.toml" />
     <MESSAGE value="Building Package" />
     <MESSAGE value="Add dynamic version control" />
@@ -585,7 +592,8 @@
     <MESSAGE value="After checking for an update you are taken back to the main menu" />
     <MESSAGE value="Going back to the main menu will now show display_startup" />
     <MESSAGE value="Terminal is cleared after successful update" />
-    <option name="LAST_COMMIT_MESSAGE" value="Terminal is cleared after successful update" />
+    <MESSAGE value="Fixed utils.display import" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed utils.display import" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
