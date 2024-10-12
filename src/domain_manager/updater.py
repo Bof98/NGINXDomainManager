@@ -5,7 +5,6 @@ import sys
 
 import requests
 from colorama import Fore, init
-from domain_manager.utils import display
 from packaging import version
 
 try:
@@ -22,6 +21,14 @@ logging.basicConfig(
     level=logging.DEBUG,  # Set to DEBUG to capture detailed information
     format='%(asctime)s - %(levelname)s - %(message)s'
 )
+
+
+def clear_terminal():
+    """Clear the terminal screen."""
+    if os.name == 'nt':  # For Windows
+        os.system('cls')
+    else:  # For macOS and Linux
+        os.system('clear')
 
 
 def get_current_version(package_name):
@@ -48,6 +55,7 @@ def get_latest_version_from_pypi(package_name):
         logging.error(f"Failed to get latest version from PyPI: {e}")
         return None
 
+
 def update_package(package_name):
     try:
         # Run pip to install the latest version of the package
@@ -61,11 +69,12 @@ def update_package(package_name):
         # Restart the application
         logging.info("Restarting application...")
         print(Fore.YELLOW + "Restarting application...")
-        display.clear_terminal()
+        clear_terminal()
         os.execv(sys.executable, [sys.executable] + sys.argv)
     except subprocess.CalledProcessError as e:
         logging.error(f"Failed to update the package: {e}")
         print(Fore.RED + "Failed to update the package.")
+
 
 def check_for_updates(current_version, package_name):
     print(Fore.YELLOW + "Checking for updates...")
