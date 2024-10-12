@@ -1,7 +1,6 @@
 # Display Startup Graphic
 import logging
 import os
-import sys
 
 from colorama import Fore
 from domain_manager.config import configure_settings, create_nginx_config
@@ -65,12 +64,10 @@ def main_menu(config):
         print("2) Edit an existing subdomain")
         print("3) Update existing domains")
         print("4) Delete a subdomain")
-        print("5) View logs")
-        print("6) View changelog")
-        print("7) Configure settings")
-        print("8) Exit")
+        print("5) Settings")
+        print("6) Exit")
 
-        choice = input("Enter your choice (1-8): ").strip()
+        choice = input("Enter your choice (1-6): ").strip()
 
         if choice == '1':
             # Create a new subdomain
@@ -145,21 +142,34 @@ def main_menu(config):
             delete_subdomain(config, subdomain)
 
         elif choice == '5':
-            # View logs
-            show_logs(config)
+            while True:
+                print("\nWhat would you like to do?")
+                print("1) View logs")
+                print("2) View Changelog")
+                print("3) Configure settings")
+                print("4) Go back to the main menu")
 
-        elif choice == '6':
-            # View changelog
-            show_changelog()
+                choice = input("Enter your choice (1-4): ").strip()
 
-        elif choice == '7':
-            # Configure settings
-            configure_settings(config)
+                if choice == '1':
+                    # View logs
+                    show_logs(config)
 
-        elif choice == '8':
-            # Exit
-            print(Fore.CYAN + "Goodbye!")
-            sys.exit(0)
+                elif choice == '2':
+                    # View changelog
+                    show_changelog()
+
+                elif choice == '3':
+                    # Configure settings
+                    configure_settings(config)
+
+                elif choice == '4':
+                    # Go back to the main menu
+                    break
+
+                else:
+                    print(Fore.RED + "Invalid option. Try again.")
+                    continue
 
         else:
             print(Fore.RED + "Invalid option. Try again.")
