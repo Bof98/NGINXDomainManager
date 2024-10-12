@@ -1,54 +1,94 @@
 import logging
 import os
 import subprocess
+from logging.handlers import RotatingFileHandler
 
-from colorama import Fore
+from colorama import Fore, Style
 
 
-# Setup Logging
 def setup_logging(log_file):
-    logging.basicConfig(
-        filename=log_file,
-        level=logging.INFO,
-        format='%(asctime)s - %(levelname)s - %(message)s'
+    logger = logging.getLogger('NGINXDomainManager')
+    logger.setLevel(logging.DEBUG)
+
+    # Rotating File Handler
+    file_handler = RotatingFileHandler(
+        log_file,
+        maxBytes=5 * 1024 * 1024,  # 5 MB
+        backupCount=5
     )
-    # Also log to console
-    console = logging.StreamHandler()
-    console.setLevel(logging.ERROR)
-    formatter = logging.Formatter('%(levelname)s - %(message)s')
-    console.setFormatter(formatter)
-    logging.getLogger().addHandler(console)
+    file_handler.setLevel(logging.INFO)
+
+    # Console Handler
+    console_handler = logging.StreamHandler()
+    console_handler.setLevel(logging.DEBUG)
+
+    # Define color mapping for different log levels
+    LOG_COLORS = {
+        logging.DEBUG: Fore.CYAN,
+        logging.INFO: Fore.GREEN,
+        logging.WARNING: Fore.YELLOW,
+        logging.ERROR: Fore.RED,
+        logging.CRITICAL: Fore.MAGENTA + Style.BRIGHT,
+    }
+
+    class ColorFormatter(logging.Formatter):
+        def format(self, record):
+            log_color = LOG_COLORS.get(record.levelno, Fore.WHITE)
+            formatted_message = super().format(record)
+            return f"{log_color}{formatted_message}{Style.RESET_ALL}"
+
+    # Create formatters
+    file_formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+    console_formatter = ColorFormatter('%(levelname)s - %(message)s')
+
+    # Add formatters to handlers
+    file_handler.setFormatter(file_formatter)
+    console_handler.setFormatter(console_formatter)
+
+    # Add handlers to the logger
+    logger.addHandler(file_handler)
+    logger.addHandler(console_handler)
+
+    return logger
 
 
-# Show Logs
-def show_logs(config):
-    log_file = config['log_file']
+# Initialize logger
+logger = setup_logging('nginx_domain_manager.log')
+
+
+def show_logs(config, logger):
+    log_file = config.get('log_file', 'nginx_domain_manager.log')
     if os.path.exists(log_file):
         try:
             if os.name == 'nt':  # For Windows
-                subprocess.run(['more', log_file])
+                subprocess.run(['more', log_file], check=True)
             else:  # For Unix-like systems
-                subprocess.run(['less', log_file])
-        except FileNotFoundError:
-            print(Fore.RED + "The 'less' or 'more' command is not available.")
-            logging.error("The 'less' or 'more' command is not available.")
+                subprocess.run(['less', log_file], check=True)
+            logger.info(f"Displayed logs from {log_file}")
+        except subprocess.CalledProcessError as e:
+            error_message = f"Failed to display logs using system pager: {e}"
+            print(Fore.RED + "Failed to display logs using system pager.")
+            logger.error(error_message)
             # Fallback to reading and printing the log file
             try:
                 with open(log_file, 'r') as f:
                     print(f.read())
+                logger.info("Displayed logs by printing the log file directly.")
             except Exception as e:
+                error_message = f"Failed to read log file {log_file}: {e}"
                 print(Fore.RED + f"Failed to read log file: {e}")
-                logging.error(f"Failed to read log file {log_file}: {e}")
-        except Exception as e:
-            print(Fore.RED + f"Failed to open log file: {e}")
-            logging.error(f"Failed to open log file {log_file}: {e}")
+                logger.error(error_message)
+        except FileNotFoundError:
+            error_message = "The 'less' or 'more' command is not available."
+            print(Fore.RED + error_message)
+            logger.error(error_message)
     else:
-        print(Fore.RED + f"Log file not found at {log_file}")
-        logging.error(f"Log file not found at {log_file}")
+        error_message = f"Log file not found at {log_file}"
+        print(Fore.RED + error_message)
+        logger.error(error_message)
 
 
-# Show Changelog
-def show_changelog():
+def show_changelog(logger):
     script_path = os.path.realpath(__file__)
     changelog_started = False
     print("Changelog:")
@@ -60,11 +100,14 @@ def show_changelog():
                     continue
                 if changelog_started:
                     if line.strip().startswith("# -"):
-                        print(Fore.GREEN + line.strip()[2:])
+                        entry = line.strip()[2:].strip()
+                        print(Fore.GREEN + entry)
+                        logger.info(f"Changelog entry: {entry}")
                     elif line.strip() == "":
                         continue
                     else:
                         break
     except Exception as e:
-        print(Fore.RED + f"Failed to read changelog: {e}")
-        logging.error(f"Failed to read changelog: {e}")
+        error_message = f"Failed to read changelog: {e}"
+        print(Fore.RED + error_message)
+        logger.error(error_message)

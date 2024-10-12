@@ -4,8 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26fd8c86-c00a-4d7a-a326-e97524ca75de" name="Changes" comment="Updated updater.py&#10;&#10;- Replaced pip search with pip list --outdated">
+    <list default="true" id="26fd8c86-c00a-4d7a-a326-e97524ca75de" name="Changes" comment="Fixed main menu 'exit' choice">
       <change afterPath="$PROJECT_DIR$/upload_to_pypi.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/domain_manager/_version.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain_manager/_version.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/domain_manager/logger.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain_manager/logger.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,6 +60,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Python.config.executor": "Run",
+    "Python.logger.executor": "Run",
     "Python.main (1).executor": "Run",
     "Python.main.executor": "Run",
     "Python.upload_to_pypi.executor": "Run",
@@ -79,7 +83,7 @@
       <recent name="C:\Users\harri\PycharmProjects\NGINXDomainManager" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.upload_to_pypi">
+  <component name="RunManager" selected="Python.logger">
     <configuration name="config" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="NGINXDomainManager" />
       <option name="ENV_FILES" value="" />
@@ -94,6 +98,28 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/dist/nginxdomainmanager-2.0.14.post1.dev1/src/domain_manager/config.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="logger" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="NGINXDomainManager" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/domain_manager" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/domain_manager/logger.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -170,6 +196,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.logger" />
         <item itemvalue="Python.upload_to_pypi" />
         <item itemvalue="Python.main (1)" />
         <item itemvalue="Python.config" />
@@ -411,7 +438,15 @@
       <option name="project" value="LOCAL" />
       <updated>1728692229058</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Fixed main menu 'exit' choice">
+      <option name="closed" value="true" />
+      <created>1728692506582</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1728692506582</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -454,7 +489,8 @@
     <MESSAGE value="Added terminal clearing function and main menu to display.py&#10;&#10;- Implemented `clear_terminal` function to clear the terminal screen." />
     <MESSAGE value="Updated Menu Opions&#10;&#10;- Moved 'View Logs', 'View changelog' and 'Configure settings' to 'Settings'" />
     <MESSAGE value="Updated updater.py&#10;&#10;- Replaced pip search with pip list --outdated" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated updater.py&#10;&#10;- Replaced pip search with pip list --outdated" />
+    <MESSAGE value="Fixed main menu 'exit' choice" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed main menu 'exit' choice" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
