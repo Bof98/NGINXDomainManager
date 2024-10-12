@@ -7,7 +7,7 @@ import requests
 from colorama import Fore, init
 from packaging import version
 
-from utils.display import clear_terminal
+import utils.display
 
 try:
     from importlib.metadata import version as get_installed_version, PackageNotFoundError
@@ -62,7 +62,7 @@ def update_package(package_name):
         # Restart the application
         logging.info("Restarting application...")
         print(Fore.YELLOW + "Restarting application...")
-        clear_terminal()
+        utils.display.clear_terminal()
         os.execv(sys.executable, [sys.executable] + sys.argv)
     except subprocess.CalledProcessError as e:
         logging.error(f"Failed to update the package: {e}")
