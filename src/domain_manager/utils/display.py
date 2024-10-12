@@ -90,7 +90,10 @@ def main_menu(config):
             subdomains = list_subdomains(config)
             if not subdomains:
                 continue
-            selection = input("Select the number of the subdomain you want to edit: ").strip()
+            selection = input("Select the number of the subdomain you want to edit (or 'q' to go back): ").strip()
+            if selection.lower() == 'q':
+                print(Fore.YELLOW + "Deletion cancelled.")
+                continue
             details = get_subdomain_details(config, selection)
             if not details:
                 print(Fore.RED + "Invalid selection. Please check the number and try again.")
@@ -128,7 +131,10 @@ def main_menu(config):
             subdomains = list_subdomains(config)
             if not subdomains:
                 continue
-            selection = input("Select the number of the subdomain you want to delete: ").strip()
+            selection = input("Select the number of the subdomain you want to delete (or 'q' to go back): ").strip()
+            if selection.lower() == 'q':
+                print(Fore.YELLOW + "Deletion cancelled.")
+                continue
             details = get_subdomain_details(config, selection)
             if not details:
                 print(Fore.RED + "Invalid selection. Please check the number and try again.")
