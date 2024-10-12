@@ -200,3 +200,4 @@ def main_menu(config):
         # Wait for user to press Enter before returning to the menu
         input("Press Enter to return to the main menu...")
         clear_terminal()
+        display_startup(__version__)
