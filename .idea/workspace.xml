@@ -4,11 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26fd8c86-c00a-4d7a-a326-e97524ca75de" name="Changes" comment="Removed display import and added clear_terminal function into updater.py">
+    <list default="true" id="26fd8c86-c00a-4d7a-a326-e97524ca75de" name="Changes" comment="Change Log test">
+      <change afterPath="$PROJECT_DIR$/src/domain_manager/utils/display_v2.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/upload_to_pypi.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/domain_manager/_version.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain_manager/_version.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/domain_manager/updater.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain_manager/updater.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/domain_manager/config.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain_manager/config.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,6 +22,9 @@
         <option value="Python Script" />
       </list>
     </option>
+  </component>
+  <component name="FormatOnSaveOptions">
+    <option name="myRunOnSave" value="true" />
   </component>
   <component name="Git.Settings">
     <option name="PUSH_TAGS">
@@ -67,7 +71,7 @@
     "Python.upload_to_pypi.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
-    "settings.editor.selected.configurable": "configurable.group.project"
+    "settings.editor.selected.configurable": "configurable.group.appearance"
   }
 }]]></component>
   <component name="PyConsoleOptionsProvider">
@@ -566,7 +570,15 @@
       <option name="project" value="LOCAL" />
       <updated>1728697826853</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="Change Log test">
+      <option name="closed" value="true" />
+      <created>1728744156083</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1728744156083</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -587,7 +599,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add dynamic version control" />
     <MESSAGE value="Fixed version import" />
     <MESSAGE value="Fixed" />
     <MESSAGE value="Fixed logger import" />
@@ -612,7 +623,8 @@
     <MESSAGE value="Fixed utils.display import" />
     <MESSAGE value="Fixed display import" />
     <MESSAGE value="Removed display import and added clear_terminal function into updater.py" />
-    <option name="LAST_COMMIT_MESSAGE" value="Removed display import and added clear_terminal function into updater.py" />
+    <MESSAGE value="Change Log test" />
+    <option name="LAST_COMMIT_MESSAGE" value="Change Log test" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
