@@ -4,6 +4,7 @@ import subprocess
 import sys
 import requests
 from colorama import Fore, init
+from packaging import version
 
 # Initialize colorama
 init(autoreset=True)
@@ -28,25 +29,11 @@ def clear_terminal():
         os.system('clear')
 
 
-def get_latest_version_from_github():
-    """Fetch the latest version tag from the GitHub repository."""
-    try:
-        url = "https://api.github.com/repos/Bof98/NGINXDomainManager/releases/latest"
-        response = requests.get(url, timeout=5)
-        response.raise_for_status()
-        latest_version = response.json()['tag_name']
-        logging.debug(f"Latest version on GitHub: {latest_version}")
-        return latest_version
-    except Exception as e:
-        logging.error(f"Failed to fetch the latest version from GitHub: {e}")
-        return None
-
 def get_latest_release_details():
     """Fetch the latest release details from GitHub."""
-    import requests
     try:
         url = "https://api.github.com/repos/Bof98/NGINXDomainManager/releases/latest"
-        response = requests.get(url, timeout=5)
+        response = requests.get(url, timeout=10)
         response.raise_for_status()
         release_data = response.json()
         latest_version = release_data.get('tag_name', 'Unknown')
@@ -58,19 +45,18 @@ def get_latest_release_details():
 
 
 def get_current_version():
-    """Read the current version from the repository (e.g., version file)."""
+    """Fetch the current version from Git tags."""
     try:
-        version_file = os.path.join(LOCAL_REPO_DIR, 'VERSION')
-        if os.path.exists(version_file):
-            with open(version_file, 'r') as f:
-                current_version = f.read().strip()
-                logging.debug(f"Current installed version: {current_version}")
-                return current_version
-        else:
-            logging.warning("VERSION file not found, assuming version is unknown.")
-            return "0.0.0"
-    except Exception as e:
-        logging.error(f"Failed to read the current version: {e}")
+        # Run `git describe --tags --abbrev=0` to get the latest tag without commit hash
+        version_str = subprocess.check_output(
+            ["git", "describe", "--tags", "--abbrev=0"],
+            cwd=LOCAL_REPO_DIR,
+            universal_newlines=True,
+        ).strip()
+        logging.debug(f"Current installed version: {version_str}")
+        return version_str
+    except subprocess.CalledProcessError:
+        logging.error("Unable to determine current version from Git.")
         return "0.0.0"
 
 
@@ -81,7 +67,8 @@ def update_from_github():
             logging.info(f"Cloning repository from {REPO_URL}...")
             subprocess.check_call(['git', 'clone', REPO_URL, LOCAL_REPO_DIR])
         else:
-            logging.info(f"Pulling latest changes into {LOCAL_REPO_DIR}...")
+            logging.info(f"Fetching latest tags and pulling changes into {LOCAL_REPO_DIR}...")
+            subprocess.check_call(['git', '-C', LOCAL_REPO_DIR, 'fetch', '--tags'])
             subprocess.check_call(['git', '-C', LOCAL_REPO_DIR, 'pull'])
         logging.info("Repository updated successfully.")
         print(Fore.GREEN + "Repository updated successfully.")
@@ -100,39 +87,43 @@ def restart_application():
 
 
 def check_for_updates():
-    """Check for updates and display changes."""
+    """Check if there are updates available and update if needed."""
     print(Fore.YELLOW + "Checking for updates...")
     logging.info("Checking for updates...")
     try:
         latest_version, changelog = get_latest_release_details()
         current_version = get_current_version()
-        if latest_version != "Unknown":
-            logging.info(f"Latest version: {latest_version}, Current version: {current_version}")
-            if latest_version > current_version:
-                print(Fore.YELLOW + f"A new version ({latest_version}) is available.")
-                print(Fore.CYAN + f"Changelog:\n{changelog}\n")
-                logging.info(f"A new version ({latest_version}) is available.")
-                choice = input("Do you want to update now? (y/n): ").strip().lower()
-                if choice == 'y':
-                    update_from_github()
-                    updated_version = get_current_version()
-                    if updated_version == latest_version:
-                        logging.info(f"Update successful: now running version {updated_version}.")
-                        print(Fore.GREEN + f"Update successful: now running version {updated_version}.")
-                        restart_application()
-                    else:
-                        logging.error("Update failed: version mismatch after update.")
-                        print(Fore.RED + "Update failed: version mismatch. Please try again.")
-                        sys.exit(1)
-                else:
-                    print(Fore.GREEN + "Update canceled.")
-                    logging.info("Update canceled by the user.")
-            else:
-                print(Fore.GREEN + "You are using the latest version.")
-                logging.info("You are using the latest version.")
-        else:
+
+        if latest_version == "Unknown":
             print(Fore.RED + "Could not retrieve the latest version from GitHub.")
             logging.error("Could not retrieve the latest version from GitHub.")
+            return
+
+        # Compare versions using packaging.version
+        if version.parse(latest_version) > version.parse(current_version):
+            print(Fore.YELLOW + f"A new version ({latest_version}) is available.")
+            print(Fore.CYAN + f"Changelog:\n{changelog}\n")
+            logging.info(f"A new version ({latest_version}) is available.")
+
+            choice = input("Do you want to update now? (y/n): ").strip().lower()
+            if choice == 'y':
+                update_from_github()
+                # Fetch the new version after update
+                updated_version = get_current_version()
+                if version.parse(updated_version) == version.parse(latest_version):
+                    logging.info(f"Update successful: now running version {updated_version}.")
+                    print(Fore.GREEN + f"Update successful: now running version {updated_version}.")
+                    restart_application()
+                else:
+                    logging.error("Update failed: version mismatch after update.")
+                    print(Fore.RED + "Update failed: version mismatch. Please try again.")
+                    sys.exit(1)
+            else:
+                print(Fore.GREEN + "Update canceled.")
+                logging.info("Update canceled by the user.")
+        else:
+            print(Fore.GREEN + "You are using the latest version.")
+            logging.info("You are using the latest version.")
     except Exception as e:
         logging.error(f"Failed to check for updates: {e}")
         print(Fore.RED + "Could not check for updates.")
