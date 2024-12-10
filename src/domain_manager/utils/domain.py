@@ -63,19 +63,27 @@ def validate_nginx_config():
 
 # List Subdomains
 def list_subdomains(config):
-    sites_available = config['sites_available']
+    """
+    List all configured subdomains.
+
+    Args:
+        config (dict): Configuration dictionary.
+
+    Returns:
+        list: List of subdomain strings.
+    """
+    sites_enabled_dir = "/etc/nginx/sites-enabled/"
     subdomains = []
-    for entry in os.listdir(sites_available):
-        config_path = os.path.join(sites_available, entry)
-        if os.path.isfile(config_path):
-            subdomains.append(entry)
-    if not subdomains:
-        print(Fore.YELLOW + "No subdomains found.")
-        return []
-    print("Available subdomains:")
-    for idx, sub in enumerate(subdomains, 1):
-        target_ip, target_port = extract_ip_port(config, sub)
-        print(f"{idx}) Subdomain: {sub}, IP: {target_ip}, Port: {target_port}")
+    try:
+        for config_file in os.listdir(sites_enabled_dir):
+            config_path = os.path.join(sites_enabled_dir, config_file)
+            if os.path.isfile(config_path):
+                # Extract subdomain from config file name
+                # Assumes config file is named as subdomain.conf or similar
+                subdomain = config_file.split('.')[0]
+                subdomains.append(subdomain)
+    except Exception as e:
+        logging.error(f"Failed to list subdomains: {e}")
     return subdomains
 
 
