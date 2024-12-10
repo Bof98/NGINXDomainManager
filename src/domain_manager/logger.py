@@ -3,11 +3,20 @@
 import logging
 import os
 from logging.handlers import RotatingFileHandler
-
-from colorama import Fore, Style
+import requests
+from colorama import Fore, Style, init
 
 
 def setup_logging(log_file):
+    """
+    Setup logging with both console and rotating file handlers.
+
+    Args:
+        log_file (str): Path to the log file.
+    
+    Returns:
+        logger (logging.Logger): Configured logger instance.
+    """
     logger = logging.getLogger('NGINXDomainManager')
     logger.setLevel(logging.DEBUG)
 
@@ -54,11 +63,18 @@ def setup_logging(log_file):
 
 
 def show_logs(config, logger):
+    """
+    Display the contents of the log file.
+
+    Args:
+        config (dict): Configuration dictionary containing log file path.
+        logger (logging.Logger): Logger instance.
+    """
     log_file = config.get('log_file', 'nginx_domain_manager.log')
     if os.path.exists(log_file):
         try:
             with open(log_file, 'r') as f:
-                print(f.read())
+                print(Fore.WHITE + f.read())
             logger.info(f"Displayed logs from {log_file}")
         except Exception as e:
             error_message = f"Failed to read log file {log_file}: {e}"
@@ -69,26 +85,38 @@ def show_logs(config, logger):
         print(Fore.RED + error_message)
         logger.error(error_message)
 
+
 def show_changelog(logger):
-    script_path = os.path.realpath(__file__)
-    changelog_started = False
-    print("Changelog:")
+    """
+    Fetch and display the latest changelog from GitHub releases.
+
+    Args:
+        logger (logging.Logger): Logger instance.
+    """
+    logger.info("Fetching latest changelog from GitHub...")
+    print(Fore.YELLOW + "Fetching latest changelog from GitHub...")
     try:
-        with open(script_path, 'r') as f:
-            for line in f:
-                if line.strip().startswith("# Changelog:"):
-                    changelog_started = True
-                    continue
-                if changelog_started:
-                    if line.strip().startswith("# -"):
-                        entry = line.strip()[2:].strip()
-                        print(Fore.GREEN + entry)
-                        logger.info(f"Changelog entry: {entry}")
-                    elif line.strip() == "":
-                        continue
-                    else:
-                        break
+        # GitHub API endpoint for the latest release
+        REPO_API_URL = "https://api.github.com/repos/Bof98/NGINXDomainManager/releases/latest"
+        response = requests.get(REPO_API_URL, timeout=10)
+        response.raise_for_status()
+        release_data = response.json()
+
+        latest_version = release_data.get('tag_name', 'Unknown')
+        changelog = release_data.get('body', 'No changelog provided.')
+
+        if latest_version != 'Unknown':
+            print(Fore.CYAN + f"Latest Version: {latest_version}\n")
+            print(Fore.GREEN + "Changelog:\n" + Fore.WHITE + changelog + "\n")
+            logger.info(f"Displayed changelog for version {latest_version}")
+        else:
+            print(Fore.RED + "Could not retrieve the latest version from GitHub.\n")
+            logger.error("Could not retrieve the latest version from GitHub.")
+    except requests.exceptions.RequestException as e:
+        error_message = f"Failed to fetch changelog from GitHub: {e}"
+        print(Fore.RED + error_message)
+        logger.error(error_message)
     except Exception as e:
-        error_message = f"Failed to read changelog: {e}"
+        error_message = f"An unexpected error occurred while fetching changelog: {e}"
         print(Fore.RED + error_message)
         logger.error(error_message)
