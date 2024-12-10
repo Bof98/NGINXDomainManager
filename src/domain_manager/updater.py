@@ -41,6 +41,21 @@ def get_latest_version_from_github():
         logging.error(f"Failed to fetch the latest version from GitHub: {e}")
         return None
 
+def get_latest_release_details():
+    """Fetch the latest release details from GitHub."""
+    import requests
+    try:
+        url = "https://api.github.com/repos/Bof98/NGINXDomainManager/releases/latest"
+        response = requests.get(url, timeout=5)
+        response.raise_for_status()
+        release_data = response.json()
+        latest_version = release_data.get('tag_name', 'Unknown')
+        changelog = release_data.get('body', 'No changelog provided.')
+        return latest_version, changelog
+    except Exception as e:
+        logging.error(f"Failed to fetch release details from GitHub: {e}")
+        return "Unknown", "Could not fetch changelog."
+
 
 def get_current_version():
     """Read the current version from the repository (e.g., version file)."""
@@ -85,21 +100,21 @@ def restart_application():
 
 
 def check_for_updates():
-    """Check if there are updates available and update if needed."""
+    """Check for updates and display changes."""
     print(Fore.YELLOW + "Checking for updates...")
     logging.info("Checking for updates...")
     try:
-        latest_version = get_latest_version_from_github()
+        latest_version, changelog = get_latest_release_details()
         current_version = get_current_version()
-        if latest_version:
+        if latest_version != "Unknown":
             logging.info(f"Latest version: {latest_version}, Current version: {current_version}")
             if latest_version > current_version:
                 print(Fore.YELLOW + f"A new version ({latest_version}) is available.")
+                print(Fore.CYAN + f"Changelog:\n{changelog}\n")
                 logging.info(f"A new version ({latest_version}) is available.")
                 choice = input("Do you want to update now? (y/n): ").strip().lower()
                 if choice == 'y':
                     update_from_github()
-                    # Verify update
                     updated_version = get_current_version()
                     if updated_version == latest_version:
                         logging.info(f"Update successful: now running version {updated_version}.")
