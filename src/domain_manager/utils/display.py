@@ -14,7 +14,22 @@ from domain_manager.utils.validation import validate_subdomain, validate_ip, val
 package_name = "NGINXDomainManager"
 
 
+def get_github_version():
+    """Fetch the latest version tag from GitHub."""
+    import requests
+    try:
+        url = "https://api.github.com/repos/Bof98/NGINXDomainManager/releases/latest"
+        response = requests.get(url, timeout=5)
+        response.raise_for_status()
+        latest_version = response.json().get('tag_name', 'Unknown')
+        return latest_version
+    except Exception as e:
+        logging.error(f"Failed to fetch the latest version from GitHub: {e}")
+        return "Unknown"
+
 def display_startup(version):
+    """Display the startup graphic with the current version and GitHub version."""
+    github_version = get_github_version()
     startup_graphic = f"""
 ######################################################################################
 #   _____                        _         __  __                                    #
@@ -28,8 +43,8 @@ def display_startup(version):
 ######################################################################################
     """
     print(Fore.CYAN + startup_graphic)
-    print(f"Version: {version}\n")
-
+    print(f"Current Version: {version}")
+    print(f"GitHub Latest Version: {github_version}\n")
 
 # Display Help
 def display_help():
