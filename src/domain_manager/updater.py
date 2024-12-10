@@ -99,7 +99,16 @@ def check_for_updates():
                 choice = input("Do you want to update now? (y/n): ").strip().lower()
                 if choice == 'y':
                     update_from_github()
-                    restart_application()
+                    # Verify update
+                    updated_version = get_current_version()
+                    if updated_version == latest_version:
+                        logging.info(f"Update successful: now running version {updated_version}.")
+                        print(Fore.GREEN + f"Update successful: now running version {updated_version}.")
+                        restart_application()
+                    else:
+                        logging.error("Update failed: version mismatch after update.")
+                        print(Fore.RED + "Update failed: version mismatch. Please try again.")
+                        sys.exit(1)
                 else:
                     print(Fore.GREEN + "Update canceled.")
                     logging.info("Update canceled by the user.")
