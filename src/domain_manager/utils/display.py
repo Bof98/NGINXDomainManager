@@ -1,14 +1,13 @@
 # Display Startup Graphic
 import logging
 import os
-
 from colorama import Fore
-from domain_manager.config import configure_settings, create_nginx_config
 from domain_manager.logger import show_logs, show_changelog, setup_logging
-from domain_manager.updater import check_for_updates
 from domain_manager.utils.domain import list_subdomains, get_subdomain_details, delete_subdomain, \
     obtain_certificate, reload_nginx
 from domain_manager.utils.validation import validate_subdomain, validate_ip, validate_port
+from domain_manager.utils.fix_nginx import fix_nginx_configuration
+from domain_manager.utils.reset_configs import reset_all_configurations
 
 package_name = "NGINXDomainManager"
 
@@ -73,8 +72,6 @@ def clear_terminal():
     else:  # For macOS and Linux
         os.system('clear')
 
-
-# Main Menu
 # Main Menu
 def main_menu(config, version):
     logger = setup_logging(config['log_file'])
@@ -91,86 +88,19 @@ def main_menu(config, version):
 
         if choice == '1':
             # Create a new subdomain
-            subdomain = input("Enter your subdomain (e.g., app.example.com): ").strip()
-            target_ip = input("Enter the internal IP address of the target server (e.g., 192.168.0.215): ").strip()
-            target_port = input("Enter the port the target service is running on (e.g., 8080): ").strip()
-
-            if not validate_subdomain(subdomain) or not validate_ip(target_ip) or not validate_port(target_port):
-                continue
-
-            create_nginx_config(config, subdomain, target_ip, target_port)
-            obtain_certificate(subdomain)
-            reload_nginx()
-
-            print(Fore.GREEN + f"Nginx configuration and SSL setup for {subdomain} complete!")
-            logger.info(f"Nginx configuration and SSL setup for {subdomain} complete!")
+            # ... existing code ...
 
         elif choice == '2':
             # Edit an existing subdomain
-            subdomains = list_subdomains(config)
-            if not subdomains:
-                continue
-            selection = input("Select the number of the subdomain you want to edit (or 'q' to go back): ").strip()
-            if selection.lower() == 'q':
-                print(Fore.YELLOW + "Edit cancelled.")
-                continue
-            details = get_subdomain_details(config, selection)
-            if not details:
-                print(Fore.RED + "Invalid selection. Please check the number and try again.")
-                continue
-            subdomain, current_ip, current_port = details
-            print(f"Editing subdomain: {subdomain} (Current IP: {current_ip}, Current Port: {current_port})")
-            new_ip = input(f"Enter the new internal IP address for {subdomain} [{current_ip}]: ").strip() or current_ip
-            new_port = input(f"Enter the new port for {subdomain} [{current_port}]: ").strip() or current_port
-
-            if not validate_ip(new_ip) or not validate_port(new_port):
-                continue
-
-            create_nginx_config(config, subdomain, new_ip, new_port)
-            obtain_certificate(subdomain)
-            reload_nginx()
-
-            print(Fore.GREEN + f"Nginx configuration and SSL setup for {subdomain} updated!")
-            logger.info(f"Nginx configuration and SSL setup for {subdomain} updated!")
+            # ... existing code ...
 
         elif choice == '3':
             # Update existing domains
-            print("Updating SSL certificates for all existing domains...")
-            subdomains = list_subdomains(config)
-            if not subdomains:
-                continue
-            for sub in subdomains:
-                print(f"Updating SSL certificate for {sub}...")
-                success = obtain_certificate(sub)
-                if not success:
-                    print(Fore.RED + f"Failed to update SSL certificate for {sub}.")
-                    logger.error(f"Failed to update SSL certificate for {sub}.")
-            reload_nginx()
-            print(Fore.GREEN + "All domains updated.")
-            logger.info("All domains updated.")
+            # ... existing code ...
 
         elif choice == '4':
             # Delete a subdomain
-            subdomains = list_subdomains(config)
-            if not subdomains:
-                continue
-            selection = input("Select the number of the subdomain you want to delete (or 'q' to go back): ").strip()
-            if selection.lower() == 'q':
-                print(Fore.YELLOW + "Deletion cancelled.")
-                continue
-            details = get_subdomain_details(config, selection)
-            if not details:
-                print(Fore.RED + "Invalid selection. Please check the number and try again.")
-                continue
-            subdomain = details[0]
-            confirmation = input(
-                f"Are you sure you want to delete the subdomain {subdomain}? This action cannot be undone. (yes/no): ").strip().lower()
-            if confirmation != 'yes':
-                print(Fore.YELLOW + "Deletion cancelled.")
-                continue
-            delete_subdomain(config, subdomain)
-            print(Fore.GREEN + f"Subdomain {subdomain} deleted successfully.")
-            logger.info(f"Subdomain {subdomain} deleted successfully.")
+            # ... existing code ...
 
         elif choice == '5':
             while True:
@@ -179,18 +109,19 @@ def main_menu(config, version):
                 print("2) View Changelog")
                 print("3) Configure settings")
                 print("4) Check for updates")
-                print("5) Fix Nginx Configuration and SSL Certificates")  # New Option
-                print("6) Go back to the main menu")
+                print("5) Fix Nginx Configuration and SSL Certificates")
+                print("6) Reset All Configurations")  # New Option
+                print("7) Go back to the main menu")
 
-                sub_choice = input("Enter your choice (1-6): ").strip()
+                sub_choice = input("Enter your choice (1-7): ").strip()
 
                 if sub_choice == '1':
                     # View logs
-                    show_logs(config, logger)  # Pass the logger
+                    show_logs(config, logger)
 
                 elif sub_choice == '2':
                     # View changelog
-                    show_changelog(logger)  # Pass the logger
+                    show_changelog(logger)
 
                 elif sub_choice == '3':
                     # Configure settings
@@ -209,6 +140,16 @@ def main_menu(config, version):
                     logger.info("Nginx configuration and SSL certificates fixed.")
 
                 elif sub_choice == '6':
+                    # Reset All Configurations
+                    confirm = input(Fore.RED + "Are you sure you want to reset all Nginx configurations? This will delete all existing configurations and recreate them based on the current settings. (yes/no): ").strip().lower()
+                    if confirm == 'yes':
+                        reset_all_configurations(config, logger)
+                        print(Fore.GREEN + "All Nginx configurations have been reset.")
+                        logger.info("All Nginx configurations have been reset.")
+                    else:
+                        print(Fore.YELLOW + "Reset operation cancelled.")
+
+                elif sub_choice == '7':
                     # Go back to the main menu
                     break
 
