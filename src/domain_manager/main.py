@@ -33,10 +33,7 @@ init(autoreset=True)
 def main():
     # Ensure the script is run as root/admin
     check_permissions()
-
-    # Check for updates before proceeding
-    check_for_updates()
-
+    
     # Load configuration
     config = load_config()
 
@@ -46,6 +43,9 @@ def main():
     # Display startup graphic
     display_startup(__version__)
 
+    # Check for updates before proceeding
+    check_for_updates()
+    
     # Proceed with the main menu
     main_menu(config)
 
