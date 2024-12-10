@@ -9,17 +9,30 @@ from domain_manager.utils.backup import backup_config
 
 # Obtain SSL Certificate
 def obtain_certificate(subdomain):
+    """
+    Obtain or renew SSL certificate for a given subdomain using Certbot.
+
+    Args:
+        subdomain (str): The subdomain to obtain the certificate for.
+
+    Returns:
+        bool: True if certificate was obtained successfully, False otherwise.
+    """
+    import subprocess
+    from colorama import Fore
+
     try:
-        subprocess.run([
+        # Run certbot to obtain/renew the certificate
+        subprocess.check_call([
             'certbot', '--nginx', '-d', subdomain,
             '--redirect', '--agree-tos', '--no-eff-email', '--non-interactive'
-        ], check=True)
-        print(Fore.GREEN + f"Obtained SSL certificate for {subdomain}")
-        logging.info(f"Obtained SSL certificate for {subdomain}")
+        ])
+        return True
     except subprocess.CalledProcessError as e:
         print(Fore.RED + f"Failed to obtain SSL certificate for {subdomain}: {e}")
         logging.error(f"Failed to obtain SSL certificate for {subdomain}: {e}")
-        sys.exit(1)
+        return False
+
 
 
 # Reload Nginx
