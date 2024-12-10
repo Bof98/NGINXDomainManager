@@ -1,138 +1,133 @@
-import logging
-import os
-import subprocess
-import sys
+# domain_manager/config.py
 
-import domain_manager.logger
 import yaml
-from colorama import Fore
-from domain_manager.utils.backup import backup_config
+import os
 
-# Constants
-SCRIPTDIR = os.path.dirname(__file__)
-CONFIG_FILE = os.path.join(SCRIPTDIR, 'config.yaml')
-
-
-# Load Configuration
 def load_config():
-    if not os.path.exists(CONFIG_FILE):
-        print(f"{Fore.RED}Configuration file '{CONFIG_FILE}' not found.")
-        sys.exit(1)
-    with open(CONFIG_FILE, 'r') as f:
-        try:
-            config = yaml.safe_load(f)
-            return config
-        except yaml.YAMLError as e:
-            print(f"{Fore.RED}Error parsing the configuration file: {e}")
-            sys.exit(1)
-
-
-# Save Configuration
-def save_config(config):
-    with open(CONFIG_FILE, 'w') as f:
-        yaml.safe_dump(config, f)
-
-
-# Create Nginx Configuration
-def create_nginx_config(config, subdomain, target_ip, target_port):
-    config_path = os.path.join(config['sites_available'], subdomain)
-
-    # Backup existing config if exists
-    if os.path.isfile(config_path):
-        backup_config(config, config_path)
-
-    # Replace placeholders in template
-    nginx_config = config['nginx_template'].replace('{{SUBDOMAIN}}', subdomain) \
-        .replace('{{TARGET_IP}}', target_ip) \
-        .replace('{{TARGET_PORT}}', target_port)
-
-    # Write to config file
-    try:
+    """Load the configuration from config.yaml."""
+    config_path = os.path.join(os.path.dirname(__file__), 'config.yaml')
+    if not os.path.exists(config_path):
+        # Create a default config if not present
+        default_config = {
+            'log_file': '/var/log/nginx_domain_manager.log',
+            'subdomains': {}
+        }
         with open(config_path, 'w') as f:
-            f.write(nginx_config)
-        logging.info(f"Nginx configuration created for {subdomain}")
-    except Exception as e:
-        print(Fore.RED + f"Failed to write Nginx configuration: {e}")
-        logging.error(f"Failed to write Nginx configuration for {subdomain}: {e}")
-        sys.exit(1)
+            yaml.dump(default_config, f)
+        return default_config
+    
+    with open(config_path, 'r') as f:
+        config = yaml.safe_load(f)
+    return config
 
-    # Enable the configuration
-    enabled_path = os.path.join(config['sites_enabled'], subdomain)
-    try:
-        subprocess.run(['ln', '-sf', config_path, enabled_path], check=True)
-        logging.info(f"Nginx configuration enabled for {subdomain}")
-    except subprocess.CalledProcessError as e:
-        print(Fore.RED + f"Failed to enable Nginx configuration: {e}")
-        logging.error(f"Failed to enable Nginx configuration for {subdomain}: {e}")
-        sys.exit(1)
-
-
-# Configure Settings
 def configure_settings(config):
-    while True:
-        print("\nCurrent Settings:")
-        print("1) Nginx Configuration Directory:", config['nginx_conf_dir'])
-        print("2) Nginx Sites Available Directory:", config['sites_available'])
-        print("3) Nginx Sites Enabled Directory:", config['sites_enabled'])
-        print("4) Backup Directory:", config['backup_dir'])
-        print("5) Log File:", config['log_file'])
-        print("6) Nginx Configuration Template")
-        print("7) Back to Main Menu")
-
-        choice = input("Select the number of the setting you want to change: ").strip()
-
-        if choice == '1':
-            new_value = input(f"Enter new Nginx Configuration Directory [{config['nginx_conf_dir']}]: ").strip()
-            if new_value:
-                config['nginx_conf_dir'] = new_value
-                config['sites_available'] = os.path.join(new_value, 'sites-available')
-                config['sites_enabled'] = os.path.join(new_value, 'sites-enabled')
-                print(Fore.GREEN + f"Nginx Configuration Directory set to {new_value}")
-                logging.info(f"Nginx Configuration Directory updated to {new_value}")
-        elif choice == '2':
-            new_value = input(f"Enter new Nginx Sites Available Directory [{config['sites_available']}]: ").strip()
-            if new_value:
-                config['sites_available'] = new_value
-                print(Fore.GREEN + f"Nginx Sites Available Directory set to {new_value}")
-                logging.info(f"Nginx Sites Available Directory updated to {new_value}")
-        elif choice == '3':
-            new_value = input(f"Enter new Nginx Sites Enabled Directory [{config['sites_enabled']}]: ").strip()
-            if new_value:
-                config['sites_enabled'] = new_value
-                print(Fore.GREEN + f"Nginx Sites Enabled Directory set to {new_value}")
-                logging.info(f"Nginx Sites Enabled Directory updated to {new_value}")
-        elif choice == '4':
-            new_value = input(f"Enter new Backup Directory [{config['backup_dir']}]: ").strip()
-            if new_value:
-                config['backup_dir'] = new_value
-                print(Fore.GREEN + f"Backup Directory set to {new_value}")
-                logging.info(f"Backup Directory updated to {new_value}")
-        elif choice == '5':
-            new_value = input(f"Enter new Log File Location [{config['log_file']}]: ").strip()
-            if new_value:
-                config['log_file'] = new_value
-                domain_manager.logger.setup_logging(new_value)  # Reconfigure logging
-                print(Fore.GREEN + f"Log File set to {new_value}")
-                logging.info(f"Log File updated to {new_value}")
-        elif choice == '6':
-            print("\nCurrent Nginx Configuration Template:")
-            print(config['nginx_template'])
-            print("\nEnter new Nginx Configuration Template (end with an empty line):")
-            new_template_lines = []
-            while True:
-                line = input()
-                if line == "":
-                    break
-                new_template_lines.append(line)
-            if new_template_lines:
-                config['nginx_template'] = "\n".join(new_template_lines)
-                print(Fore.GREEN + "Nginx Configuration Template updated.")
-                logging.info("Nginx Configuration Template updated.")
-        elif choice == '7':
-            break
-        else:
-            print(Fore.RED + "Invalid selection. Please try again.")
-            continue
-
-        # Save the updated configuration
-        save_config(config)
+    """Allow user to configure settings."""
+    import logging
+    logger = logging.getLogger('NGINXDomainManager')
+    
+    print("\nConfigure Settings:")
+    print("1) Add a new subdomain")
+    print("2) Remove a subdomain")
+    print("3) Update a subdomain")
+    print("4) Go back to Settings Menu")
+    
+    choice = input("Enter your choice (1-4): ").strip()
+    
+    if choice == '1':
+        subdomain = input("Enter your subdomain (e.g., app.example.com): ").strip()
+        target_ip = input("Enter the internal IP address of the target server (e.g., 192.168.0.215): ").strip()
+        target_port = input("Enter the port the target service is running on (e.g., 8080): ").strip()
+        
+        custom_options = []
+        add_custom = input("Do you want to add custom Nginx options for this subdomain? (y/n): ").strip().lower()
+        while add_custom == 'y':
+            option = input("Enter custom Nginx directive (leave blank to stop): ").strip()
+            if option:
+                custom_options.append(option)
+            else:
+                break
+            add_custom = input("Add another custom option? (y/n): ").strip().lower()
+        
+        config['subdomains'][subdomain] = {
+            'target_ip': target_ip,
+            'target_port': target_port,
+            'custom_options': custom_options
+        }
+        with open(os.path.join(os.path.dirname(__file__), 'config.yaml'), 'w') as f:
+            yaml.dump(config, f)
+        print(Fore.GREEN + f"Subdomain {subdomain} added successfully.")
+        logger.info(f"Subdomain {subdomain} added successfully.")
+    
+    elif choice == '2':
+        subdomains = list_subdomains(config)
+        if not subdomains:
+            print(Fore.YELLOW + "No subdomains to remove.")
+            return
+        print("\nSelect the subdomain to remove:")
+        for idx, sub in enumerate(subdomains, 1):
+            print(f"{idx}) {sub}")
+        selection = input("Enter the number of the subdomain to remove (or 'q' to cancel): ").strip()
+        if selection.lower() == 'q':
+            print(Fore.YELLOW + "Operation cancelled.")
+            return
+        try:
+            idx = int(selection) - 1
+            if idx < 0 or idx >= len(subdomains):
+                raise ValueError
+            subdomain = subdomains[idx]
+            del config['subdomains'][subdomain]
+            with open(os.path.join(os.path.dirname(__file__), 'config.yaml'), 'w') as f:
+                yaml.dump(config, f)
+            print(Fore.GREEN + f"Subdomain {subdomain} removed successfully.")
+            logger.info(f"Subdomain {subdomain} removed successfully.")
+        except (ValueError, IndexError):
+            print(Fore.RED + "Invalid selection.")
+    
+    elif choice == '3':
+        subdomains = list_subdomains(config)
+        if not subdomains:
+            print(Fore.YELLOW + "No subdomains to update.")
+            return
+        print("\nSelect the subdomain to update:")
+        for idx, sub in enumerate(subdomains, 1):
+            print(f"{idx}) {sub}")
+        selection = input("Enter the number of the subdomain to update (or 'q' to cancel): ").strip()
+        if selection.lower() == 'q':
+            print(Fore.YELLOW + "Operation cancelled.")
+            return
+        try:
+            idx = int(selection) - 1
+            if idx < 0 or idx >= len(subdomains):
+                raise ValueError
+            subdomain = subdomains[idx]
+            print(f"\nUpdating subdomain: {subdomain}")
+            target_ip = input(f"Enter the new internal IP address [{config['subdomains'][subdomain]['target_ip']}]: ").strip() or config['subdomains'][subdomain]['target_ip']
+            target_port = input(f"Enter the new port [{config['subdomains'][subdomain]['target_port']}]: ").strip() or config['subdomains'][subdomain]['target_port']
+            
+            custom_options = config['subdomains'][subdomain].get('custom_options', [])
+            update_custom = input("Do you want to update custom Nginx options? (y/n): ").strip().lower()
+            if update_custom == 'y':
+                custom_options = []
+                add_custom = input("Enter custom Nginx directive (leave blank to stop): ").strip()
+                while add_custom:
+                    custom_options.append(add_custom)
+                    add_custom = input("Enter another custom Nginx directive (leave blank to stop): ").strip()
+            
+            config['subdomains'][subdomain] = {
+                'target_ip': target_ip,
+                'target_port': target_port,
+                'custom_options': custom_options
+            }
+            with open(os.path.join(os.path.dirname(__file__), 'config.yaml'), 'w') as f:
+                yaml.dump(config, f)
+            print(Fore.GREEN + f"Subdomain {subdomain} updated successfully.")
+            logger.info(f"Subdomain {subdomain} updated successfully.")
+        except (ValueError, IndexError):
+            print(Fore.RED + "Invalid selection.")
+    
+    elif choice == '4':
+        # Go back to Settings Menu
+        return
+    
+    else:
+        print(Fore.RED + "Invalid option. Returning to Settings Menu.")
