@@ -22,10 +22,16 @@ NGINXDomainManager is a Python-based tool to manage NGINX configurations and SSL
    cd NGINXDomainManager
 ```
 
+  Make setup.sh executable:
+   
+   ```bash
+   sudo chmod +x setup.sh
+```
+
   Run the setup script:
    
    ```bash
-   sudo ./run.sh
+   sudo ./setup.sh
 ```
 
 ### Option 2: Install via pip (Coming Soon)   
