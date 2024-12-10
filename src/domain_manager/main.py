@@ -52,7 +52,7 @@ def main():
     # Ensure the script is run as root/admin
     check_permissions()
 
-    # Setup logging
+    # Load configuration
     config = load_config()
     logger = setup_logging(config['log_file'])
 
@@ -62,17 +62,14 @@ def main():
     # Check for updates before proceeding
     check_for_updates()
 
-    # Optionally, show the changelog after updating
-    show_changelog(logger)
-
-    # Load configuration
+    # Load configuration again in case it was updated
     config = load_config()
 
-    # Setup logging
-    setup_logging(config['log_file'])
+    # Setup logging again in case it was updated
+    logger = setup_logging(config['log_file'])
 
     # Proceed with the main menu
-    main_menu(config, __version__)
+    main_menu(config, __version__)  # Pass both config and __version__
 
 
 if __name__ == "__main__":
