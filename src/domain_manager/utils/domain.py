@@ -16,23 +16,36 @@ def obtain_certificate(subdomain):
         ], check=True)
         print(Fore.GREEN + f"Obtained SSL certificate for {subdomain}")
         logging.info(f"Obtained SSL certificate for {subdomain}")
-    except subprocess.CalledProcessError:
-        print(Fore.RED + f"Failed to obtain SSL certificate for {subdomain}")
-        logging.error(f"Failed to obtain SSL certificate for {subdomain}")
+    except subprocess.CalledProcessError as e:
+        print(Fore.RED + f"Failed to obtain SSL certificate for {subdomain}: {e}")
+        logging.error(f"Failed to obtain SSL certificate for {subdomain}: {e}")
         sys.exit(1)
 
 
 # Reload Nginx
 def reload_nginx():
     try:
+        print("Testing Nginx configuration...")
         subprocess.run(['nginx', '-t'], check=True)
+        print("Nginx configuration test successful. Reloading Nginx...")
         subprocess.run(['systemctl', 'reload', 'nginx'], check=True)
         print(Fore.GREEN + "Nginx reloaded successfully.")
         logging.info("Nginx reloaded successfully.")
-    except subprocess.CalledProcessError:
-        print(Fore.RED + "Nginx configuration test failed. Please check the configuration.")
-        logging.error("Nginx configuration test failed.")
+    except subprocess.CalledProcessError as e:
+        print(Fore.RED + f"Nginx reload failed: {e}")
+        logging.error(f"Nginx reload failed: {e}")
         sys.exit(1)
+        
+
+def validate_nginx_config():
+    try:
+        subprocess.run(['nginx', '-t'], check=True)
+        print(Fore.GREEN + "Nginx configuration is valid.")
+        return True
+    except subprocess.CalledProcessError as e:
+        print(Fore.RED + f"Nginx configuration test failed: {e}")
+        logging.error(f"Nginx configuration test failed: {e}")
+        return False
 
 
 # List Subdomains
