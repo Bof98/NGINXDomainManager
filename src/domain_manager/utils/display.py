@@ -75,7 +75,8 @@ def clear_terminal():
 
 
 # Main Menu
-def main_menu(config):
+# Main Menu
+def main_menu(config, version):
     logger = setup_logging(config['log_file'])
     while True:
         print("\nWhat would you like to do?")
@@ -102,7 +103,7 @@ def main_menu(config):
             reload_nginx()
 
             print(Fore.GREEN + f"Nginx configuration and SSL setup for {subdomain} complete!")
-            logging.info(f"Nginx configuration and SSL setup for {subdomain} complete!")
+            logger.info(f"Nginx configuration and SSL setup for {subdomain} complete!")
 
         elif choice == '2':
             # Edit an existing subdomain
@@ -111,7 +112,7 @@ def main_menu(config):
                 continue
             selection = input("Select the number of the subdomain you want to edit (or 'q' to go back): ").strip()
             if selection.lower() == 'q':
-                print(Fore.YELLOW + "Deletion cancelled.")
+                print(Fore.YELLOW + "Edit cancelled.")
                 continue
             details = get_subdomain_details(config, selection)
             if not details:
@@ -130,7 +131,7 @@ def main_menu(config):
             reload_nginx()
 
             print(Fore.GREEN + f"Nginx configuration and SSL setup for {subdomain} updated!")
-            logging.info(f"Nginx configuration and SSL setup for {subdomain} updated!")
+            logger.info(f"Nginx configuration and SSL setup for {subdomain} updated!")
 
         elif choice == '3':
             # Update existing domains
@@ -140,10 +141,13 @@ def main_menu(config):
                 continue
             for sub in subdomains:
                 print(f"Updating SSL certificate for {sub}...")
-                obtain_certificate(sub)
+                success = obtain_certificate(sub)
+                if not success:
+                    print(Fore.RED + f"Failed to update SSL certificate for {sub}.")
+                    logger.error(f"Failed to update SSL certificate for {sub}.")
             reload_nginx()
             print(Fore.GREEN + "All domains updated.")
-            logging.info("All domains updated.")
+            logger.info("All domains updated.")
 
         elif choice == '4':
             # Delete a subdomain
@@ -165,17 +169,20 @@ def main_menu(config):
                 print(Fore.YELLOW + "Deletion cancelled.")
                 continue
             delete_subdomain(config, subdomain)
+            print(Fore.GREEN + f"Subdomain {subdomain} deleted successfully.")
+            logger.info(f"Subdomain {subdomain} deleted successfully.")
 
         elif choice == '5':
             while True:
-                print("\nWhat would you like to do?")
+                print("\nSettings Menu:")
                 print("1) View logs")
                 print("2) View Changelog")
                 print("3) Configure settings")
                 print("4) Check for updates")
-                print("5) Go back to the main menu")
+                print("5) Fix Nginx Configuration and SSL Certificates")  # New Option
+                print("6) Go back to the main menu")
 
-                sub_choice = input("Enter your choice (1-5): ").strip()
+                sub_choice = input("Enter your choice (1-6): ").strip()
 
                 if sub_choice == '1':
                     # View logs
@@ -191,10 +198,17 @@ def main_menu(config):
 
                 elif sub_choice == '4':
                     # Check for updates
-                    check_for_updates(__version__, package_name)
+                    check_for_updates()
                     break
 
                 elif sub_choice == '5':
+                    # Fix Nginx Configuration and SSL Certificates
+                    print("Fixing Nginx configuration and handling SSL certificate issues...")
+                    fix_nginx_configuration(config, logger)
+                    print(Fore.GREEN + "Nginx configuration and SSL certificates fixed.")
+                    logger.info("Nginx configuration and SSL certificates fixed.")
+
+                elif sub_choice == '6':
                     # Go back to the main menu
                     break
 
@@ -214,4 +228,4 @@ def main_menu(config):
         # Wait for user to press Enter before returning to the menu
         input("Press Enter to return to the main menu...")
         clear_terminal()
-        display_startup(__version__)
+        display_startup(version)
