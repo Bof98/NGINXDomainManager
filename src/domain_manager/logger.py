@@ -18,48 +18,50 @@ def setup_logging(log_file):
         logger (logging.Logger): Configured logger instance.
     """
     logger = logging.getLogger('NGINXDomainManager')
-    logger.setLevel(logging.DEBUG)
+    if not logger.handlers:
+        logger.setLevel(logging.DEBUG)
 
-    # Rotating File Handler
-    file_handler = RotatingFileHandler(
-        log_file,
-        maxBytes=5 * 1024 * 1024,  # 5 MB
-        backupCount=5
-    )
-    file_handler.setLevel(logging.INFO)
+        # Rotating File Handler
+        file_handler = RotatingFileHandler(
+            log_file,
+            maxBytes=5 * 1024 * 1024,  # 5 MB
+            backupCount=5
+        )
+        file_handler.setLevel(logging.INFO)
 
-    # Console Handler
-    console_handler = logging.StreamHandler()
-    console_handler.setLevel(logging.DEBUG)
+        # Console Handler
+        console_handler = logging.StreamHandler()
+        console_handler.setLevel(logging.DEBUG)
 
-    # Define color mapping for different log levels
-    LOG_COLORS = {
-        logging.DEBUG: Fore.CYAN,
-        logging.INFO: Fore.GREEN,
-        logging.WARNING: Fore.YELLOW,
-        logging.ERROR: Fore.RED,
-        logging.CRITICAL: Fore.MAGENTA + Style.BRIGHT,
-    }
+        # Define color mapping for different log levels
+        LOG_COLORS = {
+            logging.DEBUG: Fore.CYAN,
+            logging.INFO: Fore.GREEN,
+            logging.WARNING: Fore.YELLOW,
+            logging.ERROR: Fore.RED,
+            logging.CRITICAL: Fore.MAGENTA + Style.BRIGHT,
+        }
 
-    class ColorFormatter(logging.Formatter):
-        def format(self, record):
-            log_color = LOG_COLORS.get(record.levelno, Fore.WHITE)
-            formatted_message = super().format(record)
-            return f"{log_color}{formatted_message}{Style.RESET_ALL}"
+        class ColorFormatter(logging.Formatter):
+            def format(self, record):
+                log_color = LOG_COLORS.get(record.levelno, Fore.WHITE)
+                formatted_message = super().format(record)
+                return f"{log_color}{formatted_message}{Style.RESET_ALL}"
 
-    # Create formatters
-    file_formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
-    console_formatter = ColorFormatter('%(levelname)s - %(message)s')
+        # Create formatters
+        file_formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+        console_formatter = ColorFormatter('%(levelname)s - %(message)s')
 
-    # Add formatters to handlers
-    file_handler.setFormatter(file_formatter)
-    console_handler.setFormatter(console_formatter)
+        # Add formatters to handlers
+        file_handler.setFormatter(file_formatter)
+        console_handler.setFormatter(console_formatter)
 
-    # Add handlers to the logger
-    logger.addHandler(file_handler)
-    logger.addHandler(console_handler)
+        # Add handlers to the logger
+        logger.addHandler(file_handler)
+        logger.addHandler(console_handler)
 
     return logger
+
 
 
 def show_logs(config, logger):
