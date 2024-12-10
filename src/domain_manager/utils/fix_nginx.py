@@ -7,6 +7,22 @@ from colorama import Fore, Style
 
 from domain_manager.utils.domain import list_subdomains, obtain_certificate, reload_nginx
 
+def backup_nginx_config(config_path, logger):
+    """
+    Create a backup of the Nginx configuration file.
+
+    Args:
+        config_path (str): Path to the Nginx configuration file.
+        logger (logging.Logger): Logger instance.
+    """
+    backup_path = f"{config_path}.backup"
+    try:
+        subprocess.check_call(['cp', config_path, backup_path])
+        logger.info(f"Backup created for {config_path} at {backup_path}.")
+        print(Fore.GREEN + f"Backup created for {config_path}.")
+    except subprocess.CalledProcessError as e:
+        logger.error(f"Failed to create backup for {config_path}: {e}")
+        print(Fore.RED + f"Failed to create backup for {config_path}: {e}")
 
 def fix_nginx_configuration(config, logger):
     """
@@ -19,18 +35,25 @@ def fix_nginx_configuration(config, logger):
     logger.info("Starting Nginx configuration fix process.")
     print(Fore.YELLOW + "Starting Nginx configuration fix process...")
 
-    # List of problematic subdomains with configuration file paths
-    problematic_subdomains = {
-        "finance.tpharrison.co.uk": "/etc/nginx/sites-enabled/finance.tpharrison.co.uk",
-        "pbll-frontend.ares-server.co.uk": "/etc/nginx/sites-enabled/pbll-frontend.ares-server.co.uk",
-        # Add other subdomains with protocol options redefined as needed
-    }
+    # Path to Nginx sites-enabled directory
+    sites_enabled_dir = "/etc/nginx/sites-enabled/"
 
-    for subdomain, config_path in problematic_subdomains.items():
-        if not os.path.exists(config_path):
-            logger.warning(f"Nginx configuration file for {subdomain} not found at {config_path}. Skipping.")
-            print(Fore.YELLOW + f"Nginx configuration file for {subdomain} not found. Skipping.")
+    if not os.path.isdir(sites_enabled_dir):
+        logger.error(f"Sites-enabled directory not found at {sites_enabled_dir}.")
+        print(Fore.RED + f"Sites-enabled directory not found at {sites_enabled_dir}.")
+        return
+
+    # Iterate through all configuration files in sites-enabled
+    for config_file in os.listdir(sites_enabled_dir):
+        config_path = os.path.join(sites_enabled_dir, config_file)
+        if not os.path.isfile(config_path):
             continue
+
+        subdomain = config_file.split('.')[0]  # Assumes config file is named as subdomain.conf or similar
+        logger.info(f"Processing configuration for {subdomain}.")
+
+        # Backup the configuration file before making changes
+        backup_nginx_config(config_path, logger)
 
         try:
             with open(config_path, 'r') as file:
@@ -38,7 +61,6 @@ def fix_nginx_configuration(config, logger):
 
             new_lines = []
             listen_directives = 0
-
             for line in lines:
                 stripped_line = line.strip()
                 if stripped_line.startswith("listen 443 ssl;") or stripped_line.startswith("listen [::]:443 ssl;"):
@@ -58,6 +80,7 @@ def fix_nginx_configuration(config, logger):
         except Exception as e:
             logger.error(f"Failed to fix Nginx configuration for {subdomain}: {e}")
             print(Fore.RED + f"Failed to fix Nginx configuration for {subdomain}: {e}")
+            continue
 
     # After fixing configurations, test Nginx configuration
     try:
