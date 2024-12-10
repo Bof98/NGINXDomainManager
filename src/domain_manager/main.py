@@ -1,5 +1,6 @@
 """
 DomainManager.py - A Python-based script to manage Nginx subdomains with SSL certificates.
+Version: 2.0.9
 
 Requires: Python 3.6+, PyYAML, colorama
 """
@@ -29,9 +30,9 @@ init(autoreset=True)
 def get_current_version():
     """Fetch the current version from Git tags."""
     try:
-        # Run `git describe` to get the latest tag or commit hash
+        # Fetch the latest tag without commit hash suffix
         version = subprocess.check_output(
-            ["git", "describe", "--tags"],
+            ["git", "describe", "--tags", "--abbrev=0"],
             cwd=os.path.dirname(os.path.abspath(__file__)),
             universal_newlines=True,
         ).strip()
