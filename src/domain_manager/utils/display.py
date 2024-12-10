@@ -10,7 +10,7 @@ from domain_manager.utils.domain import list_subdomains, get_subdomain_details, 
 from domain_manager.utils.validation import validate_subdomain, validate_ip, validate_port
 from domain_manager.utils.fix_nginx import fix_nginx_configuration
 from domain_manager.utils.reset_configs import reset_all_configurations
-from domain_manager.utils.updater import check_for_updates
+from domain_manager.updater import check_for_updates
 
 def main_menu(config, version):
     logger = setup_logging(config['log_file'])
