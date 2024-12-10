@@ -3,7 +3,6 @@ import logging
 import os
 
 from colorama import Fore
-from domain_manager._version import __version__
 from domain_manager.config import configure_settings, create_nginx_config
 from domain_manager.logger import show_logs, show_changelog, setup_logging
 from domain_manager.updater import check_for_updates
