@@ -1,6 +1,4 @@
-# config.yaml
-
-version: "1.6.0"
+version: "1.6.1"
 
 nginx_conf_dir: "/etc/nginx"
 sites_available: "/etc/nginx/sites-available"
@@ -23,8 +21,9 @@ nginx_template: |
 
       ssl_protocols TLSv1.2 TLSv1.3;
       ssl_prefer_server_ciphers on;
-      ssl_ciphers EECDH+AESGCM:EDH+AESGCM;
+      ssl_ciphers 'EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH';
       ssl_session_cache shared:SSL:10m;
+      ssl_session_timeout 10m;
 
       add_header X-Content-Type-Options nosniff;
       add_header X-XSS-Protection "1; mode=block";
@@ -38,4 +37,34 @@ nginx_template: |
           proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
           proxy_set_header X-Forwarded-Proto $scheme;
       }
+  }
+
+nginx_default_conf: |
+  user nginx;
+  worker_processes auto;
+  error_log /var/log/nginx/error.log warn;
+  pid /run/nginx.pid;
+
+  events {
+      worker_connections 1024;
+  }
+
+  http {
+      include /etc/nginx/mime.types;
+      default_type application/octet-stream;
+
+      log_format main '$remote_addr - $remote_user [$time_local] "$request" '
+                      '$status $body_bytes_sent "$http_referer" '
+                      '"$http_user_agent" "$http_x_forwarded_for"';
+
+      access_log /var/log/nginx/access.log main;
+
+      sendfile on;
+      tcp_nopush on;
+      tcp_nodelay on;
+      keepalive_timeout 65;
+      types_hash_max_size 2048;
+
+      include /etc/nginx/conf.d/*.conf;
+      include /etc/nginx/sites-enabled/*;
   }
