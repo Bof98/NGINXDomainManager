@@ -80,7 +80,6 @@ def list_subdomains(config):
             if os.path.isfile(config_path):
                 # Extract subdomain from config file name
                 # Assumes config file is named as subdomain.conf or similar
-                subdomain = config_file.split('.')[0]
                 subdomains.append(subdomain)
     except Exception as e:
         logging.error(f"Failed to list subdomains: {e}")
