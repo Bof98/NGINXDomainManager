@@ -72,7 +72,7 @@ def main():
     setup_logging(config['log_file'])
 
     # Proceed with the main menu
-    main_menu(config)
+    main_menu(config, __version__)
 
 
 if __name__ == "__main__":
