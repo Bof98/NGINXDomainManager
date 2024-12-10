@@ -1,6 +1,5 @@
 """
 DomainManager.py - A Python-based script to manage Nginx subdomains with SSL certificates.
-Version: 2.0.9
 
 Requires: Python 3.6+, PyYAML, colorama
 """
@@ -8,7 +7,7 @@ Requires: Python 3.6+, PyYAML, colorama
 # Main Function
 import os
 import sys
-
+import subprocess
 from colorama import init
 
 # Add the src directory to the Python path
@@ -20,9 +19,6 @@ from domain_manager.updater import check_for_updates
 from domain_manager.utils.display import display_startup, main_menu
 from domain_manager.utils.permissions import check_permissions
 
-# Application version
-__version__ = "1.0.3"
-
 # Package details
 package_name = "NGINXDomainManager"
 
@@ -30,22 +26,41 @@ package_name = "NGINXDomainManager"
 init(autoreset=True)
 
 
+def get_current_version():
+    """Fetch the current version from Git tags."""
+    try:
+        # Run `git describe` to get the latest tag or commit hash
+        version = subprocess.check_output(
+            ["git", "describe", "--tags"],
+            cwd=os.path.dirname(os.path.abspath(__file__)),
+            universal_newlines=True,
+        ).strip()
+        return version
+    except subprocess.CalledProcessError:
+        print("Unable to determine version from Git. Defaulting to '0.0.0'.")
+        return "0.0.0"
+
+
+# Application version (dynamically fetched)
+__version__ = get_current_version()
+
+
 def main():
     # Ensure the script is run as root/admin
     check_permissions()
-    
-    # Load configuration
-    config = load_config()
-
-    # Setup logging
-    setup_logging(config['log_file'])
 
     # Display startup graphic
     display_startup(__version__)
 
     # Check for updates before proceeding
     check_for_updates()
-    
+
+    # Load configuration
+    config = load_config()
+
+    # Setup logging
+    setup_logging(config['log_file'])
+
     # Proceed with the main menu
     main_menu(config)
 
