@@ -1,6 +1,6 @@
 """
 DomainManager.py - A Python-based script to manage Nginx subdomains with SSL certificates.
-Version: 1.0.3
+Version: 2.0.9
 
 Requires: Python 3.6+, PyYAML, colorama
 """
@@ -19,17 +19,23 @@ from domain_manager.logger import setup_logging
 from domain_manager.updater import check_for_updates
 from domain_manager.utils.display import display_startup, main_menu
 from domain_manager.utils.permissions import check_permissions
-from domain_manager._version import __version__
+
+# Application version
+__version__ = "1.0.3"
+
+# Package details
+package_name = "NGINXDomainManager"
 
 # Initialize colorama
 init(autoreset=True)
-
-package_name = "NGINXDomainManager"
 
 
 def main():
     # Ensure the script is run as root/admin
     check_permissions()
+
+    # Check for updates before proceeding
+    check_for_updates()
 
     # Load configuration
     config = load_config()
@@ -39,9 +45,6 @@ def main():
 
     # Display startup graphic
     display_startup(__version__)
-
-    # Check for updates
-    check_for_updates(__version__, package_name)
 
     # Proceed with the main menu
     main_menu(config)
